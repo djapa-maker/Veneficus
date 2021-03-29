@@ -2,13 +2,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_mixer.h>
+#include <SDL/SDL_ttf.h>
+#include <stdlib.h>
 
-void enigmealf()
+int main(int argc, char *argv[])
 {
-    Void genererEnigme(enigme *e,char *nomficher);
-    Void afficherEnigme(enigme e,SDL_Surface*ecran);
+    enigme e;
+    SDL_Surface *ecran;
 
+    SDL_Init(SDL_INIT_EVERYTHING);
+    ecran = SDL_SetVideoMode(1399, 787, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+  if (ecran == NULL)
+  {
+    printf("unable to set video mode:%s \n", SDL_GetError());
+  }
 
+    initialiser_enigme(&e);
 
-
+    //genererEnigme(&e);
+    afficherEnigme(e, ecran);
+    /*sauvegarder(personne p,background,char*nomfichier);
+    charger(personne*p,background*b,char*nomfichier);*/
 }
