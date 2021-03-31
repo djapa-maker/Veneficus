@@ -6,9 +6,11 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_ttf.h>
+#include <time.h>
 
 void initialiser_enigme(enigme *e)
 {
+    e->imgbutton = NULL;
 
     e->noeng = NULL;
     e->yeseng = NULL;
@@ -27,9 +29,8 @@ void initialiser_enigme(enigme *e)
     e->posno.x = 400;
     e->posno.y = 500;
 
-
-
     e->imgeng = IMG_Load("enigme.png");
+    e->imgbutton = IMG_Load("Button.png");
 }
 void afficherEnigme(enigme e, SDL_Surface *ecran)
 {
@@ -39,12 +40,14 @@ void afficherEnigme(enigme e, SDL_Surface *ecran)
     SDL_Color couleurblanche = {255, 255, 255};
     police = TTF_OpenFont("texxte.ttf", 70);
 
-    e.texteng = TTF_RenderText_Blended(police,e.question, couleurblanche);
+    e.texteng = TTF_RenderText_Blended(police, e.question, couleurblanche);
     e.yeseng = TTF_RenderText_Blended(police, "YES", couleurblanche);
     e.noeng = TTF_RenderText_Blended(police, "NO", couleurblanche);
     SDL_BlitSurface(e.imgeng, NULL, ecran, &(e.posimg));
     SDL_BlitSurface(e.texteng, NULL, ecran, &(e.poseng));
+    SDL_BlitSurface(e.imgbutton, NULL, ecran, &(e.posyes));
     SDL_BlitSurface(e.yeseng, NULL, ecran, &(e.posyes));
+    SDL_BlitSurface(e.imgbutton, NULL, ecran, &(e.posno));
     SDL_BlitSurface(e.noeng, NULL, ecran, &(e.posno));
     SDL_Flip(ecran);
 
@@ -54,15 +57,24 @@ void afficherEnigme(enigme e, SDL_Surface *ecran)
 
 void genererEnigme(enigme *e)
 {
-    int i;
+    int i, al, trouve = 0, j;
+    srand(time(NULL));
+    al=rand()%4;
+    printf("\n%d", i);
     FILE *enigmeal = NULL;
     enigmeal = fopen("enigmee.txt", "r");
     if (enigmeal != NULL)
     {
-     
-        
-        fscanf(enigmeal, "%s\n%d", e->question, &e->reponse);
-        printf("\n%s",e->question);
+        for (i = 0; !feof(enigmeal) && !trouve; i++)
+        {
+            fscanf(enigmeal, "%s\n%d\n%d", e->question, &e->reponse, &j);
+
+            if (j == al)
+            {
+
+                trouve = 1;
+            }
+        }
 
         fclose(enigmeal);
     }

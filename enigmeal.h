@@ -11,6 +11,7 @@ typedef struct
     char question[50];
     int reponse; // 1: if yes  0: if no
     int resolu;
+    SDL_Surface *imgbutton;
     SDL_Surface *imgeng;
     SDL_Surface *texteng;
     SDL_Surface *yeseng;
