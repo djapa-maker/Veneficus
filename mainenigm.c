@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
     initialiser_enigme(&e);
 
-    //genererEnigme(&e);
+    genererEnigme(&e);
     while (i=1)
     {
       afficherEnigme(e, ecran);
