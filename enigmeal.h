@@ -14,10 +14,14 @@ typedef struct
     int resolu;
     SDL_Surface *imgeng;
     SDL_Surface *texteng;
+    SDL_Surface *yeseng;
+    SDL_Surface *noeng;
     SDL_Rect poseng;
+    SDL_Rect posyes;
+    SDL_Rect posno;
     SDL_Rect posimg;
-    TTF_Font *police;
-    SDL_Color couleurblanche;
+   
+
 
 } enigme;
 

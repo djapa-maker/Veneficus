@@ -10,28 +10,46 @@
 void initialiser_enigme(enigme *e)
 {
 
-    TTF_Init();
-    TTF_Font *police = NULL;
-    e->posimg.x = 0;
-    e->posimg.y = 0;
+    e->noeng = NULL;
+    e->yeseng = NULL;
     e->imgeng = NULL;
     e->texteng = NULL;
-    e->poseng.x = 0;
 
-    e->poseng.y = 0;
-    
+    e->posimg.x = 0;
+    e->posimg.y = 0;
+
+    e->poseng.x = 150;
+    e->poseng.y = 150;
+
+    e->posyes.x = 100;
+    e->posyes.y = 500;
+
+    e->posno.x = 400;
+    e->posno.y = 500;
+
+
 
     e->imgeng = IMG_Load("enigme.png");
-
-    e->police = TTF_OpenFont("texxte.ttf", 20);
 }
 void afficherEnigme(enigme e, SDL_Surface *ecran)
 {
-    e.couleurblanche = {255, 255, 255} ;
 
-    e.texteng = TTF_RenderText_Blended(e.police, "10+20=30?", e.couleurblanche);
-    SDL_BlitSurface(e.texteng, NULL, ecran, &(e.poseng));
+    TTF_Init();
+    TTF_Font *police = NULL;
+    SDL_Color couleurblanche = {255, 255, 255};
+    police = TTF_OpenFont("texxte.ttf", 90);
+
+    e.texteng = TTF_RenderText_Blended(police, "10+20=30?", couleurblanche);
+    e.yeseng = TTF_RenderText_Blended(police, "YES", couleurblanche);
+    e.noeng = TTF_RenderText_Blended(police, "NO", couleurblanche);
     SDL_BlitSurface(e.imgeng, NULL, ecran, &(e.posimg));
+    SDL_BlitSurface(e.texteng, NULL, ecran, &(e.poseng));
+    SDL_BlitSurface(e.yeseng, NULL, ecran, &(e.posyes));
+    SDL_BlitSurface(e.noeng, NULL, ecran, &(e.posno));
+    SDL_Flip(ecran);
+
+    TTF_CloseFont(police);
+    TTF_Quit;
 }
 
 void genererEnigme(enigme *e)
