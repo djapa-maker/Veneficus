@@ -23,8 +23,6 @@ typedef struct
     SDL_Rect posimg;
     SDL_Rect pospass;
     SDL_Rect posfail;
-    TTF_Font *police;
-    
 
 } enigme;
 
