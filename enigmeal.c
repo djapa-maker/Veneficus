@@ -7,7 +7,13 @@
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_ttf.h>
 #include <time.h>
-
+void initPerso(personnage *p)
+{
+    p->direction = 0;
+    p->numvie = 0;
+    p->poshero.x = 0;
+    p->poshero.y = 0;
+}
 void initialiser_enigme(enigme *e)
 {
     e->imgbutton = NULL;
@@ -47,7 +53,7 @@ void afficherEnigme(enigme e, SDL_Surface *ecran)
     SDL_BlitSurface(e.texteng, NULL, ecran, &(e.poseng));
     SDL_BlitSurface(e.imgbutton, NULL, ecran, &(e.posyes));
     SDL_BlitSurface(e.yeseng, NULL, ecran, &(e.posyes));
-    SDL_BlitSurface(e.imgbutton, NULL, ecran, &(e.posno));
+    //SDL_BlitSurface(e.imgbutton, NULL, ecran, &(e.posno));
     SDL_BlitSurface(e.noeng, NULL, ecran, &(e.posno));
     SDL_Flip(ecran);
 
@@ -59,7 +65,7 @@ void genererEnigme(enigme *e)
 {
     int i, al, trouve = 0, j;
     srand(time(NULL));
-    al=rand()%4;
+    al = rand() % 4;
     printf("\n%d", i);
     FILE *enigmeal = NULL;
     enigmeal = fopen("enigmee.txt", "r");
@@ -81,11 +87,44 @@ void genererEnigme(enigme *e)
     else
         printf("\n ERREUR : verifier le nom du enigmeal :");
 }
-/*void sauvegarder(personne p,background)
+void sauvegarder(personnage p)
 {
+    FILE *saveF = NULL;
+    saveF = fopen("sauvegarde.txt", "w+"); // Ouverture en écriture du fichier sauvegarde.txt
 
+    if (saveF != NULL)
+    { // Ecriture dans le fichier des positions du joueur et score
+
+        if (p.numvie = 0)
+
+            fprintf(saveF, "**** DEAD***\n");
+        if (p.numvie > 0)
+            fprintf(saveF, "**** Alive ***\n");
+
+        fprintf(saveF, "** health points: %d\n", p.numvie);
+
+        fprintf(saveF, "** Score :%d\n", p.score);
+
+        fprintf(saveF, "** positionv : %d \npositionh : %d \n", p.poshero.x, p.poshero.y);
+    }
+
+    fclose(saveF); // Fermeture du fichier
 }
-void charger(personne*p,background*b)
+void charger(personnage *p)
 {
-  
-}*/
+    FILE *saveF = NULL;
+    saveF = fopen("sauvegarde.txt", "r"); // Ouverture du fichier sauvegarde en lecture
+
+    if (saveF != NULL)
+    { // Recuperation des positions du joueur
+        fscanf(saveF, "%d", &p->numvie);
+
+       
+        fscanf(saveF, "%d", &p->score);
+        fscanf(saveF, "%d", &p->poshero.x);
+        fscanf(saveF, "%d", &p->poshero.x);
+        
+    }
+
+    fclose(saveF); // Fermeture du fichier
+}

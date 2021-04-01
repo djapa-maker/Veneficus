@@ -6,6 +6,14 @@
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_ttf.h>
 
+typedef struct {
+
+int score;
+int numvie;
+int direction;
+SDL_Rect poshero;
+}personnage;
+
 typedef struct
 {
     char question[50];
@@ -26,14 +34,14 @@ typedef struct
     SDL_Rect posfail;
 
 } enigme;
-
+void initPerso(personnage *p);
 void initialiser_enigme(enigme *e);
 void afficherEnigme(enigme e, SDL_Surface *ecran);
 void genererEnigme(enigme *e);
 int resolution(int *running, int *run);
 void afficher_resultat(SDL_Surface *ecran, int s, int r, enigme e);
 
-/*void sauvegarder(personne p,background);
-void charger(personne*p,background*b);*/
+void save (personnage p);
+void load (personnage *p);
 
 #endif

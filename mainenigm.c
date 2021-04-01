@@ -11,6 +11,7 @@
 int main(int argc, char *argv[])
 {
   int i=1;
+    personnage p;
     enigme e;
     SDL_Surface *ecran;
 
@@ -22,6 +23,7 @@ int main(int argc, char *argv[])
   }
 
     initialiser_enigme(&e);
+    initPerso(&p);
 
     genererEnigme(&e);
     while (i=1)
@@ -30,6 +32,6 @@ int main(int argc, char *argv[])
     }
     
     
-    /*sauvegarder(personne p,background,char*nomfichier);
-    charger(personne*p,background*b,char*nomfichier);*/
+     save (p);
+    load (&p);
 }
