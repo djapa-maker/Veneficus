@@ -7,17 +7,26 @@
 #include "background.h"
 int main()
 {
+  TTF_Init();
   SDL_Event event;
-    SDL_Surface *ecran=NULL,*hero=NULL;
-    SDL_Rect poshero;
-    int direction,continuer=1;
+    SDL_Surface *ecran=NULL;
+    int direction,continuer=1,frame=0;
+    const int FPS=20;
     Background b;
-    hero = IMG_Load("8.png");
-    poshero.x = 60;
-    poshero.y = 380;
+    Personne p;
+    p.perso= IMG_Load("8.png");
+    p.posperso.x = 60;
+    p.posperso.y = 380;
+    p.posperso.h=267;
+p.posperso.w=200;
+    SDL_Surface *imageM;
+    imageM=IMG_Load("masque.jpg"); 
+    SDL_Rect posimage;
+    posimage.x=0;
+    posimage.y=0;
     initBack(&b);
-     SDL_Init(SDL_INIT_VIDEO);
-  if (SDL_Init(SDL_INIT_VIDEO) != 0)
+     SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_AUDIO);
+  if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_AUDIO) != 0)
   {
     printf("unable to set video mode:%s \n", SDL_GetError());
     return 1;
@@ -29,12 +38,21 @@ int main()
     printf("unable to set video mode:%s \n", SDL_GetError());
     return 1;
   }
-   
+   int temps;
+temps=60;
+
+    Uint32 start;
+    
+   minimap m;
+initmap(&m);
+SDL_EnableKeyRepeat(200,200);
     while(continuer)
     {
+        afficherBack(b,ecran,p);
        
-        afficherBack(b,ecran,hero,poshero);
-      
+         afficherminimap (m,  ecran);
+      start=SDL_GetTicks();
+	affichertemps ( temps,ecran);
         while (SDL_PollEvent(&event))
     {
       switch (event.type)
@@ -46,54 +64,71 @@ int main()
         switch (event.key.keysym.sym)
         {
         case SDLK_RIGHT:
-          direction=1;
-          if(poshero.x<(ecran->w/2) || b.scroll.x>=(b.scroll.w-ecran->w))
+          p.direction=1;
+          if(p.posperso.x<(ecran->w/2) || b.scroll.x>=(b.scroll.w-ecran->w))
       {
-        poshero.x+=50;
-        printf("dep right poshero %d  abcisse cam %d\n",poshero.x,b.scroll.x);
+        if(collisionPP(p,imageM,b)==0)
+		    {
+        p.posperso.x+=50;
+        if(m.pospoint.x<=m.posminimap.x+1240)
+          m.pospoint.x+=5;
+        printf("dep right poshero %d  abcisse cam %d\n",p.posperso.x,b.scroll.x);
+        }
       }
-      else if(poshero.x>=(ecran->w/2))
+      else if(p.posperso.x>=(ecran->w/2))
       {
-        scrollingBack(&b,direction);
+        if(collisionPP(p,imageM,b)==0)
+		    {
+        scrollingBack(&b,p);
+        if(m.pospoint.x<=m.posminimap.x+1240)
+          m.pospoint.x+=5;
+        }
       }
-      if(poshero.x>=(ecran->w-239))
+      if(p.posperso.x>=(ecran->w-239))
       {
-        poshero.x=(ecran->w-239);
+        p.posperso.x=(ecran->w-239);
+        m.pospoint.x=100;
       }
           break;
         case SDLK_LEFT:
-          direction=2;
+          p.direction=2;
            
-      if(/*poshero.x>=(ecran->w/2) || */(b.scroll.x>=50 && b.scroll.x<(b.scroll.w-ecran->w)) || (b.scroll.x==(b.scroll.w-ecran->w) && poshero.x<=760))
+      if((b.scroll.x>=50 && b.scroll.x<(b.scroll.w-ecran->w)) || (b.scroll.x==(b.scroll.w-ecran->w) && p.posperso.x<=760))
       {
-           scrollingBack(&b,direction);
+           scrollingBack(&b,p);
       }
-      else  if(/*poshero.x<(ecran->w/2) || */b.scroll.x<50 || b.scroll.x>=(b.scroll.w-ecran->w))
+      else  if(b.scroll.x<50 || b.scroll.x>=(b.scroll.w-ecran->w))
       {
-          poshero.x-=50;
-          printf("dep left poshero %d abcisse cam : %d\n",poshero.x,b.scroll.x);
+        if(collisionPP(p,imageM,b)==0)
+		{
+          p.posperso.x-=50;
+          printf("dep left poshero %d abcisse cam : %d\n",p.posperso.x,b.scroll.x);
+      if(m.pospoint.x>=m.posminimap.x)
+		m.pospoint.x-=5;
+                }
       }
-      if(poshero.x<=60)
+      if(p.posperso.x<=60)
       {
-        poshero.x=60;
+        p.posperso.x=60;
+        m.pospoint.x=100;
       }
           break;
          case SDLK_UP:
-          direction=3;
-         if( poshero.y<=380 && poshero.y>=((ecran->h)/2) || (b.scroll.y==0 && poshero.y<=380))
+          p.direction=3;
+         if( p.posperso.y<=380 && p.posperso.y>=((ecran->h)/2) || (b.scroll.y==0 && p.posperso.y<=380))
       {
-             printf("poshero %d",poshero.y);
+             printf("poshero %d",p.posperso.y);
              printf("pos cam %d",b.scroll.y);
-          poshero.y-=50;
-          if(poshero.y<=30)
-          poshero.y=30;
+          p.posperso.y-=50;
+          if(p.posperso.y<=30)
+          p.posperso.y=30;
      
       }
-      else if(poshero.y<393)
+      else if(p.posperso.y<393)
       {
-        printf("poshero %d",poshero.y);
+        printf("poshero %d",p.posperso.y);
          printf("pos cam %d",b.scroll.y);
-        scrollingBack(&b,direction);
+        scrollingBack(&b,p);
        
       }
           break;
@@ -102,9 +137,18 @@ int main()
       }
     }
     SDL_Flip(ecran);
+    frame++;
+if(frame==30)
+{
+  if(temps>0)
+temps--;
+frame=0;
+}
+        if(1000/FPS>SDL_GetTicks()-start)
+            SDL_Delay(1000/FPS-(SDL_GetTicks()-start));
     }
     SDL_FreeSurface(ecran);
-    SDL_FreeSurface(hero);
+    SDL_FreeSurface(p.perso);
     SDL_FreeSurface(b.imgBack1);
     SDL_Quit;
 }
