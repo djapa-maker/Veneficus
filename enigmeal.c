@@ -17,6 +17,8 @@ void initPerso(personnage *p)
 void initialiser_enigme(enigme *e)
 {
     e->imgbutton = NULL;
+    e->passeng = NULL;
+    e->faileng = NULL;
 
     e->noeng = NULL;
     e->yeseng = NULL;
@@ -34,6 +36,12 @@ void initialiser_enigme(enigme *e)
 
     e->posno.x = 400;
     e->posno.y = 500;
+
+    e->posfail.x = 400;
+    e->posfail.y = 500;
+
+     e->pospass.x = 400;
+    e->pospass.y = 500;
 
     e->imgeng = IMG_Load("enigme.png");
     e->imgbutton = IMG_Load("Button.png");
@@ -87,7 +95,63 @@ void genererEnigme(enigme *e)
     else
         printf("\n ERREUR : verifier le nom du enigmeal :");
 }
-void sauvegarder(personnage p)
+int resolution(int *running, int *run)
+{
+    SDL_Event event;
+    int r = 0;
+    SDL_PollEvent(&event);
+    switch (event.type)
+    {
+    case SDL_QUIT:
+        *running = 0;
+        *run = 0;
+        break;
+
+    case SDL_KEYDOWN:
+        switch (event.key.keysym.sym)
+        {
+        case SDLK_a:
+            r = 1;
+            break;
+        case SDLK_z:
+            r = 2;
+            break;
+        case SDLK_e:
+            r = 3;
+            break;
+        }
+        break;
+    }
+    return r;
+}
+
+void afficher_resultat(SDL_Surface *ecran, int s, int r, enigme e)
+{
+    TTF_Init();
+    TTF_Font *police1 = NULL;
+    SDL_Color couleurblanche1 = {255, 255, 255};
+    police1 = TTF_OpenFont("texxte.ttf", 70);
+
+    
+    e.passeng= TTF_RenderText_Blended(police1, "PASS", couleurblanche1);
+    e.faileng = TTF_RenderText_Blended(police1, "FAIL", couleurblanche1);
+
+    if (r == s)
+    {
+        
+        SDL_BlitSurface(e.passeng, NULL, ecran, &(e.posimg));
+        SDL_Flip(ecran);
+    }
+    else
+    {
+        
+        SDL_BlitSurface(e.faileng, NULL, ecran, &(e.posimg));
+        SDL_Flip(ecran);
+    }
+    TTF_CloseFont(police1);
+    TTF_Quit;
+}
+void save(personnage p)
 {
     FILE *saveF = NULL;
     saveF = fopen("sauvegarde.txt", "w+"); // Ouverture en écriture du fichier sauvegarde.txt
@@ -110,7 +174,7 @@ void sauvegarder(personnage p)
 
     fclose(saveF); // Fermeture du fichier
 }
-void charger(personnage *p)
+void load(personnage *p)
 {
     FILE *saveF = NULL;
     saveF = fopen("sauvegarde.txt", "r"); // Ouverture du fichier sauvegarde en lecture
@@ -119,11 +183,9 @@ void charger(personnage *p)
     { // Recuperation des positions du joueur
         fscanf(saveF, "%d", &p->numvie);
 
-       
         fscanf(saveF, "%d", &p->score);
-        fscanf(saveF, "%d", &p->poshero.x);
-        fscanf(saveF, "%d", &p->poshero.x);
-        
+        fscanf(saveF, "%hd", &p->poshero.x);
+        fscanf(saveF, "%hd", &p->poshero.x);
     }
 
     fclose(saveF); // Fermeture du fichier

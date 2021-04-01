@@ -21,17 +21,19 @@ int main(int argc, char *argv[])
   {
     printf("unable to set video mode:%s \n", SDL_GetError());
   }
-
+    load (&p);
     initialiser_enigme(&e);
     initPerso(&p);
+    save (p);
 
     genererEnigme(&e);
     while (i=1)
     {
       afficherEnigme(e, ecran);
+
     }
     
     
-     save (p);
-    load (&p);
+    
+    
 }

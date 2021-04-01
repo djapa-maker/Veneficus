@@ -39,7 +39,7 @@ void initialiser_enigme(enigme *e);
 void afficherEnigme(enigme e, SDL_Surface *ecran);
 void genererEnigme(enigme *e);
 int resolution(int *running, int *run);
-void afficher_resultat(SDL_Surface *ecran, int s, int r, enigme e);
+void resultat(SDL_Surface *ecran, int s, int r, enigme e);
 
 void save (personnage p);
 void load (personnage *p);
