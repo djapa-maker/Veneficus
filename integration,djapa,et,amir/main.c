@@ -4,6 +4,9 @@
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_ttf.h>
 #include <stdlib.h>
+#include <math.h>
+#include <time.h>
+#include <string.h>
 #include "background.h"
 int main()
 {
@@ -42,7 +45,7 @@ p.posperso.w=200;
 temps=60;
 
     Uint32 start;
-    
+   
    minimap m;
 initmap(&m);
 SDL_EnableKeyRepeat(200,200);
@@ -105,7 +108,7 @@ SDL_EnableKeyRepeat(200,200);
           printf("dep left poshero %d abcisse cam : %d\n",p.posperso.x,b.scroll.x);
       if(m.pospoint.x>=m.posminimap.x)
 		m.pospoint.x-=5;
-                }
+               }
       }
       if(p.posperso.x<=60)
       {
