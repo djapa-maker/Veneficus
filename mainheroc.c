@@ -15,22 +15,25 @@ int main(int argc, char *argv[])
     Uint32 dt, t_prev;
     perso p;
     back b;
-int dx,v=1,ts=0,dy;
+    int dx,v=1,ts=0,dy;
     int continuer = 1;
-int t1=1,t=1, t2=1, t3=1;
+ 
+    int posint,poslimit;
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
-
+    TTF_Init();
     ecran = SDL_SetVideoMode(1399, 787, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
 
-initPerso(&p);
-init(&b);
-    SDL_EnableKeyRepeat(70, 70);
+    initPerso(&p);
+    init(&b);
+    SDL_EnableKeyRepeat(90, 90);
     while (continuer)
     {
+
+
         t_prev=SDL_GetTicks();
-         aff(b,ecran);
-
-
+        aff(b,ecran);
+afficherPerso(p,ecran,dx,ts,v,dy);
+p.frapper=0;
         while (SDL_PollEvent(&event))
         {
             switch (event.type)
@@ -43,60 +46,80 @@ init(&b);
                 case SDLK_ESCAPE:
                     continuer = 0;
                     break;
-              case SDLK_RIGHT:
-                   if (v!=7)
-                  {  p.direction=0;
-                    p.acceleration+=0.003;
-                    printf("plus:%f \n",p.acceleration);
-                    deplacerPerso(&p,dt,&dx);}
+                case SDLK_RIGHT:
+                
+                    if ((v!=7)&&(p.jump==0)&&(p.frapper==0)&&(p.fall==1))
+                    {
+                        p.direction=0;
+                        p.acceleration+=0.003;
+                        printf("plus:%f \n",p.acceleration);
+                        deplacerPerso(&p,dt,&dx);
+                    }
                     break;
                 case SDLK_LEFT:
-                    if (v!=7)
-                    {p.direction=1;
-                     p.acceleration-=0.003;
-                    printf("moins:%f \n",p.acceleration);
-                    deplacerPerso(&p,dt,&dx);}
+                    if ((v!=7)&&(p.jump==0)&&(p.frapper==0)&&(p.fall==1))
+                    {
+                        p.direction=1;
+                        p.acceleration-=0.003;
+                        printf("moins:%f \n",p.acceleration);
+                        deplacerPerso(&p,dt,&dx);
+                    }
                     break;
-                   /* case SDLK_UP:
-                    p.up=1;
-                                         p.acceleration+=0.003;
-                    saut(&p,dt,&dy);
-                    break;*/
-                  case  SDLK_KP_PLUS:
-                  if (ts<9999)
-                  ts++;
-                  break;
-                 case SDLK_KP_MINUS:
-                 if (ts<9999)
-                 ts--;
-                 break;
-                 case SDLK_LCTRL:
-                if (v<7)
-                 v++;
-                 break;
+                case SDLK_SPACE:
+                    if ((v!=7)&&(p.jump==0)&&(p.fall==1))
+                    {p.frapper=1;
+                     printf("frapper1\n");}
+                    break;
+
+                case SDLK_UP:
+                if (v!=7)
+           	p.jump=1; 
+
+
+
+                    break;
+                case  SDLK_KP_PLUS:
+                    if (ts<9999)
+                        ts++;
+                    break;
+                case SDLK_KP_MINUS:
+                    if (ts<9999)
+                        ts--;
+                    break;
+                case SDLK_LCTRL:
+                    if (v<7)
+                        v++;
+                    break;
                 }
                 break;
-                            }
+            }
         }
 
-       if (dx>0)
-      { p.acceleration-=0.001;
-        printf("moins auto: %f \n",p.acceleration);
-       deplacerPerso(&p,dt,&dx);
-               }
-               else if (dx<0) 
-                { p.acceleration+=0.001;
-                  printf("plus auto: %f \n",p.acceleration);
-               deplacerPerso(&p,dt,&dx);}
-             
-                        
-                        if (((p.direction==0)||(p.direction==1)))
-                        {animerperso(p,ecran,&t1,&t,&t2,&t3,dx,v,ts);
-                        }
-                        
-                      dt=SDL_GetTicks()-t_prev;
+        if (dx>0)
+        {
+            p.acceleration-=0.001;
+            printf("moins  auto: %f \n",p.acceleration);
+            deplacerPerso(&p,dt,&dx );
+        }
 
-          
+        else if (dx<0)
+        {
+            p.acceleration+=0.001;
+            printf("plus auto: %f \n",p.acceleration);
+            deplacerPerso(&p,dt,&dx);
+        }
+       
+jumpin(&p,dt,dx);
+gravity(&p);
+animerperso(&p,ecran,dx,dy,v);
+
+
+ 
+        dt=SDL_GetTicks()-t_prev;
+        
+
+
+        SDL_Flip(ecran);
 
 
     }
@@ -124,14 +147,12 @@ init(&b);
         SDL_FreeSurface( p.tabvie[7]);
            SDL_FreeSurface( p.tab1[7]);
         SDL_FreeSurface(p.tab2[7]);*/
-   SDL_FreeSurface(p.imgscore);
+    SDL_FreeSurface(p.imgscore);
 
     //SDL_FreeSurface(p.tab1[1]);
     SDL_FreeSurface(b.imgbackground);
-        SDL_FreeSurface(ecran);
-        TTF_Quit;
+    SDL_FreeSurface(ecran);
+    TTF_Quit;
     SDL_Quit();
-    }
-
-
+}
 
