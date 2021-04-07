@@ -6,13 +6,14 @@
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_ttf.h>
 
-typedef struct {
+typedef struct
+{
 
-int score;
-int numvie;
-int direction;
-SDL_Rect poshero;
-}personnage;
+    int score;
+    int numvie;
+    int direction;
+    SDL_Rect poshero;
+} personnage;
 
 typedef struct
 {
@@ -20,7 +21,6 @@ typedef struct
     int reponse; // 1: if yes  0: if no
     int resolu;
     TTF_Font *police;
-    SDL_Surface *imgbutton;
     SDL_Surface *imgeng;
     SDL_Surface *texteng;
     SDL_Surface *yeseng;
@@ -42,10 +42,10 @@ void free_enigme(enigme *e);
 void afficherEnigme(enigme e, SDL_Surface *ecran);
 void genererEnigme(enigme *e);
 int resolution(int *running, int *run);
-void afficher_true(SDL_Surface *ecran,enigme e);
-void afficher_false(SDL_Surface *ecran,enigme e);
+void afficher_true(SDL_Surface *ecran, enigme e);
+void afficher_false(SDL_Surface *ecran, enigme e);
 
-void save (personnage p);
-void load (personnage *p);
+void save(personnage p);
+void load(personnage *p);
 
 #endif

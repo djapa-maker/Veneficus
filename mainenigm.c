@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
   while (continuer)
   {
     afficherEnigme(e, ecran);
+
     if (r == 1)
     {
 
@@ -94,7 +95,7 @@ int main(int argc, char *argv[])
       e.poscurseur.y = event.motion.y;
       /*printf("largeur:%d \n", e.poscurseur.x);
       printf("hauteur:%d \n", e.poscurseur.y);*/
-      if ((event.motion.x <= 190 && event.motion.x >= 100) && (event.motion.y <=560  && event.motion.y >= 500))
+      if ((event.motion.x <= 190 && event.motion.x >= 100) && (event.motion.y <= 560 && event.motion.y >= 500))
       {
         y = 1;
       }
@@ -107,20 +108,18 @@ int main(int argc, char *argv[])
       {
       case SDL_BUTTON_LEFT:
 
-        if ((y == 1) && (e.reponse == 0) )
-        r=0;
+        if ((y == 1) && (e.reponse == 0))
+          r = 0;
         else if ((y == 1) && (e.reponse == 1))
         {
-          r=1;
+          r = 1;
         }
-        
-         
 
         else if ((y == 2) && (e.reponse == 0))
-        r=1;
+          r = 1;
         else if ((y == 2) && (e.reponse == 1))
-        r=0;
-          
+          r = 0;
+
         break;
       }
     }

@@ -22,7 +22,7 @@ void initialiser_enigme(enigme *e)
     e->poscurseur.x = 0;
     e->poscurseur.y = 0;
     e->police = NULL;
-    e->imgbutton = NULL;
+    
     e->passeng = NULL;
     e->faileng = NULL;
 
@@ -44,7 +44,7 @@ void initialiser_enigme(enigme *e)
     e->posno.y = 500;
 
     e->posfail.x = 300;
-    e->posfail.y = 3500;
+    e->posfail.y = 350;
 
     e->pospass.x = 300;
     e->pospass.y = 350;
@@ -58,16 +58,15 @@ void initialiser_enigme(enigme *e)
     e->faileng = TTF_RenderText_Blended(e->police, "FAIL", couleurblanche);
 
     e->imgeng = IMG_Load("enigme.png");
-    e->imgbutton = IMG_Load("Button.png");
+    
 }
 void afficherEnigme(enigme e, SDL_Surface *ecran)
 {
+    printf("qbergerlkgnerognoiermngipoerjmg");
 
     SDL_BlitSurface(e.imgeng, NULL, ecran, &(e.posimg));
     SDL_BlitSurface(e.texteng, NULL, ecran, &(e.poseng));
-    SDL_BlitSurface(e.imgbutton, NULL, ecran, &(e.posyes));
     SDL_BlitSurface(e.yeseng, NULL, ecran, &(e.posyes));
-    //SDL_BlitSurface(e.imgbutton, NULL, ecran, &(e.posno));
     SDL_BlitSurface(e.noeng, NULL, ecran, &(e.posno));
 }
 
@@ -132,13 +131,11 @@ void afficher_true(SDL_Surface *ecran, enigme e)
 {
     SDL_BlitSurface(e.imgeng, NULL, ecran, &(e.posimg));
     SDL_BlitSurface(e.passeng, NULL, ecran, &(e.pospass));
-    
 }
 void afficher_false(SDL_Surface *ecran, enigme e)
 {
     SDL_BlitSurface(e.imgeng, NULL, ecran, &(e.posimg));
     SDL_BlitSurface(e.faileng, NULL, ecran, &(e.pospass));
-    
 }
 void save(personnage p)
 {
@@ -182,7 +179,6 @@ void load(personnage *p)
 void free_enigme(enigme *e)
 {
     SDL_FreeSurface(e->faileng);
-    SDL_FreeSurface(e->imgbutton);
     SDL_FreeSurface(e->noeng);
     SDL_FreeSurface(e->texteng);
     SDL_FreeSurface(e->yeseng);
