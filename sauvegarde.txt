@@ -1,4 +1,4 @@
 ** health points: 0
-** Score :1
+** Score :640
 ** positionv : 0 
 positionh : 0 

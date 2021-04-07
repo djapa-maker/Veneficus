@@ -19,6 +19,7 @@ typedef struct
     char question[50];
     int reponse; // 1: if yes  0: if no
     int resolu;
+    TTF_Font *police;
     SDL_Surface *imgbutton;
     SDL_Surface *imgeng;
     SDL_Surface *texteng;
@@ -32,14 +33,17 @@ typedef struct
     SDL_Rect posimg;
     SDL_Rect pospass;
     SDL_Rect posfail;
+    SDL_Rect poscurseur;
 
 } enigme;
 void initPerso(personnage *p);
 void initialiser_enigme(enigme *e);
+void free_enigme(enigme *e);
 void afficherEnigme(enigme e, SDL_Surface *ecran);
 void genererEnigme(enigme *e);
 int resolution(int *running, int *run);
-void resultat(SDL_Surface *ecran, int s, int r, enigme e);
+void afficher_true(SDL_Surface *ecran,enigme e);
+void afficher_false(SDL_Surface *ecran,enigme e);
 
 void save (personnage p);
 void load (personnage *p);

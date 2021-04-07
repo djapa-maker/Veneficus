@@ -16,6 +16,12 @@ void initPerso(personnage *p)
 }
 void initialiser_enigme(enigme *e)
 {
+
+    SDL_Color couleurblanche = {255, 255, 255};
+
+    e->poscurseur.x = 0;
+    e->poscurseur.y = 0;
+    e->police = NULL;
     e->imgbutton = NULL;
     e->passeng = NULL;
     e->faileng = NULL;
@@ -37,11 +43,19 @@ void initialiser_enigme(enigme *e)
     e->posno.x = 400;
     e->posno.y = 500;
 
-    e->posfail.x = 400;
-    e->posfail.y = 500;
+    e->posfail.x = 300;
+    e->posfail.y = 3500;
 
-     e->pospass.x = 400;
-    e->pospass.y = 500;
+    e->pospass.x = 300;
+    e->pospass.y = 350;
+
+    e->police = TTF_OpenFont("texxte.ttf", 70);
+
+    e->yeseng = TTF_RenderText_Blended(e->police, "YES", couleurblanche);
+    e->noeng = TTF_RenderText_Blended(e->police, "NO", couleurblanche);
+
+    e->passeng = TTF_RenderText_Blended(e->police, "PASS", couleurblanche);
+    e->faileng = TTF_RenderText_Blended(e->police, "FAIL", couleurblanche);
 
     e->imgeng = IMG_Load("enigme.png");
     e->imgbutton = IMG_Load("Button.png");
@@ -49,32 +63,20 @@ void initialiser_enigme(enigme *e)
 void afficherEnigme(enigme e, SDL_Surface *ecran)
 {
 
-    TTF_Init();
-    TTF_Font *police = NULL;
-    SDL_Color couleurblanche = {255, 255, 255};
-    police = TTF_OpenFont("texxte.ttf", 70);
-
-    e.texteng = TTF_RenderText_Blended(police, e.question, couleurblanche);
-    e.yeseng = TTF_RenderText_Blended(police, "YES", couleurblanche);
-    e.noeng = TTF_RenderText_Blended(police, "NO", couleurblanche);
     SDL_BlitSurface(e.imgeng, NULL, ecran, &(e.posimg));
     SDL_BlitSurface(e.texteng, NULL, ecran, &(e.poseng));
     SDL_BlitSurface(e.imgbutton, NULL, ecran, &(e.posyes));
     SDL_BlitSurface(e.yeseng, NULL, ecran, &(e.posyes));
     //SDL_BlitSurface(e.imgbutton, NULL, ecran, &(e.posno));
     SDL_BlitSurface(e.noeng, NULL, ecran, &(e.posno));
-    SDL_Flip(ecran);
-
-    TTF_CloseFont(police);
-    TTF_Quit;
 }
 
 void genererEnigme(enigme *e)
 {
+    SDL_Color couleurblanche = {255, 255, 255};
     int i, al, trouve = 0, j;
     srand(time(NULL));
     al = rand() % 4;
-    printf("\n%d", i);
     FILE *enigmeal = NULL;
     enigmeal = fopen("enigmee.txt", "r");
     if (enigmeal != NULL)
@@ -89,13 +91,14 @@ void genererEnigme(enigme *e)
                 trouve = 1;
             }
         }
+        e->texteng = TTF_RenderText_Blended(e->police, e->question, couleurblanche);
 
         fclose(enigmeal);
     }
     else
         printf("\n ERREUR : verifier le nom du enigmeal :");
 }
-int resolution(int *running, int *run)
+/*int resolution(int *running, int *run)
 {
     SDL_Event event;
     int r = 0;
@@ -123,33 +126,19 @@ int resolution(int *running, int *run)
         break;
     }
     return r;
-}
+}*/
 
-void afficher_resultat(SDL_Surface *ecran, int s, int r, enigme e)
+void afficher_true(SDL_Surface *ecran, enigme e)
 {
-    TTF_Init();
-    TTF_Font *police1 = NULL;
-    SDL_Color couleurblanche1 = {255, 255, 255};
-    police1 = TTF_OpenFont("texxte.ttf", 70);
-
+    SDL_BlitSurface(e.imgeng, NULL, ecran, &(e.posimg));
+    SDL_BlitSurface(e.passeng, NULL, ecran, &(e.pospass));
     
-    e.passeng= TTF_RenderText_Blended(police1, "PASS", couleurblanche1);
-    e.faileng = TTF_RenderText_Blended(police1, "FAIL", couleurblanche1);
-
-    if (r == s)
-    {
-        
-        SDL_BlitSurface(e.passeng, NULL, ecran, &(e.posimg));
-        SDL_Flip(ecran);
-    }
-    else
-    {
-        
-        SDL_BlitSurface(e.faileng, NULL, ecran, &(e.posimg));
-        SDL_Flip(ecran);
-    }
-    TTF_CloseFont(police1);
-    TTF_Quit;
+}
+void afficher_false(SDL_Surface *ecran, enigme e)
+{
+    SDL_BlitSurface(e.imgeng, NULL, ecran, &(e.posimg));
+    SDL_BlitSurface(e.faileng, NULL, ecran, &(e.pospass));
+    
 }
 void save(personnage p)
 {
@@ -189,4 +178,13 @@ void load(personnage *p)
     }
 
     fclose(saveF); // Fermeture du fichier
+}
+void free_enigme(enigme *e)
+{
+    SDL_FreeSurface(e->faileng);
+    SDL_FreeSurface(e->imgbutton);
+    SDL_FreeSurface(e->noeng);
+    SDL_FreeSurface(e->texteng);
+    SDL_FreeSurface(e->yeseng);
+    TTF_CloseFont(e->police);
 }
