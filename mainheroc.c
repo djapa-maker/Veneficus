@@ -51,7 +51,7 @@ p.frapper=0;
                     if ((v!=7)&&(p.jump==0)&&(p.frapper==0)&&(p.fall==1))
                     {
                         p.direction=0;
-                        p.acceleration+=0.003;
+                        p.acceleration+=0.005;
                         printf("plus:%f \n",p.acceleration);
                         deplacerPerso(&p,dt,&dx);
                     }
@@ -95,63 +95,36 @@ p.frapper=0;
             }
         }
 
-        if (dx>0)
+        if ((dx>0)&&(p.distancedown==0)&&(p.distanceup!=1))
         {
-            p.acceleration-=0.001;
+            p.acceleration-=0.0009;
             printf("moins  auto: %f \n",p.acceleration);
             deplacerPerso(&p,dt,&dx );
         }
 
-        else if (dx<0)
+
+        else if ((dx<0)&&(p.distancedown==0)&&(p.distanceup!=1))
         {
             p.acceleration+=0.001;
             printf("plus auto: %f \n",p.acceleration);
             deplacerPerso(&p,dt,&dx);
         }
+            
+       
        
 jumpin(&p,dt,dx);
 gravity(&p);
 animerperso(&p,ecran,dx,dy,v);
-
-
- 
-        dt=SDL_GetTicks()-t_prev;
-        
-
-
-        SDL_Flip(ecran);
+ dt=SDL_GetTicks()-t_prev;
+ SDL_Flip(ecran);
 
 
     }
 
-    /*SDL_FreeSurface( p.tab1[1]);
-        SDL_FreeSurface(p.tab2[1]);
-        SDL_FreeSurface( p.tabvie[1]);
-        SDL_FreeSurface( p.tab1[2]);
-        SDL_FreeSurface(p.tab2[2]);
-        SDL_FreeSurface( p.tabvie[2]);
-        SDL_FreeSurface( p.tab1[3]);
-        SDL_FreeSurface(p.tab2[3]);
-        SDL_FreeSurface( p.tabvie[3]);
-        SDL_FreeSurface( p.tab1[4]);
-        SDL_FreeSurface(p.tab2[4]);
-        SDL_FreeSurface( p.tabvie[4]);
-        SDL_FreeSurface( p.tab1[5]);
-        SDL_FreeSurface(p.tab2[5]);
-        SDL_FreeSurface( p.tabvie[5]);
-        SDL_FreeSurface( p.tab1[6]);
-        SDL_FreeSurface(p.tab2[6]);
-        SDL_FreeSurface( p.tabvie[6]);
-        SDL_FreeSurface( p.tab1[7]);
-        SDL_FreeSurface(p.tab2[7]);
-        SDL_FreeSurface( p.tabvie[7]);
-           SDL_FreeSurface( p.tab1[7]);
-        SDL_FreeSurface(p.tab2[7]);*/
-    SDL_FreeSurface(p.imgscore);
+ freesurface(p,ecran, b);
 
-    //SDL_FreeSurface(p.tab1[1]);
-    SDL_FreeSurface(b.imgbackground);
-    SDL_FreeSurface(ecran);
+
+
     TTF_Quit;
     SDL_Quit();
 }

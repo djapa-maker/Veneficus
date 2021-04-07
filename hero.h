@@ -11,16 +11,13 @@
 
 typedef struct {
 
-
-
-
-	int jumpspeed;
-	int jumpheight;
-	int distanceup;
-	int distancedown;
-	int fall;
-	int jump;
-	int gravity;
+int jumpspeed;
+int jumpheight;
+int distanceup;
+int distancedown;
+int fall;
+int jump;
+int gravity;
 SDL_Surface *tab1[7];
 SDL_Surface *tab2[7];
 SDL_Surface *tab3[7];
@@ -66,16 +63,16 @@ typedef struct
 SDL_Rect posbackground; 	
 }back;
 
-//void init(perso *p,int numperso);
+
 void initPerso(perso *p);
 void init(back *b);
 void aff(back b,SDL_Surface *ecran);
 void afficherPerso(perso p,SDL_Surface *ecran, int dx,int ts,int v,int dy);
 void deplacerPerso(perso *p,Uint32 dt,int *dx);
 void animerperso(perso *p,SDL_Surface *ecran,int dx,int dy,int v);
-//void saut(perso *p);
     void jumpin(perso *p,Uint32 dt,int dx);
     void gravity(perso *p);
+void freesurface(perso p,SDL_Surface *ecran,back b);
 
 #endif
 

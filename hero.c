@@ -62,8 +62,6 @@ p->jumpheight=7;
     p->poshero.x=150;
     p->poshero.y=400;
     p->poshero.w=100;
-   /* p->up=0;
-        p->down=0;*/
     p->frapper=0;
     p->poshero.h=100;
     p->posimgvie.x=1160;
@@ -72,8 +70,6 @@ p->jumpheight=7;
     p->posimgscore.y=70;
     p->posimgscore.w=200;
     p->posimgscore.h=500;
-//p->imgvie = IMG_Load("vie1.png");
-// p->imgscore = IMG_Load("score1.png");
     p->imgscore = NULL;
     char char1[20],char2[20],char3[20],char4[20],char5[20],char6[20],char7[20],char8[20],char9[20];// char pour stocker les no;s des images
     int t;
@@ -333,7 +329,6 @@ void animerperso(perso *p,SDL_Surface *ecran,int dx,int dy,int v)
     }
 
         
-    
 }
 
 /*
@@ -387,11 +382,12 @@ p->down=0;
     printf("pos up %d\n",p->up); 
     }*/
  void jumpin(perso *p,Uint32 dt,int dx){
-  //dx=30;
+
 if((p->jump==1||(p->distanceup)!=0)&&((p->distanceup)<p->jumpheight)&&(p->distancedown)==0){
 	p->poshero.y-=p->jumpspeed-(p->distanceup);
 	(p->distanceup)++;
-	//deplacerPerso(p,dt,&dx);
+		printf("distance %d",p->distanceup);
+
 }else{
 	(p->distanceup)=0;
 	(p->distancedown)=1;
@@ -414,8 +410,25 @@ if((p->distancedown)==1){
 }
 
    
+void freesurface(perso p,SDL_Surface *ecran,back b){
+int i;
+   for(i=1;i<7;i++)
+   {SDL_FreeSurface( p.tab1[i]);
+   SDL_FreeSurface( p.tab2[i]);
+   SDL_FreeSurface( p.tab3[i]);
+   SDL_FreeSurface( p.tab4[i]);
+   SDL_FreeSurface( p.tab5[i]);
+   SDL_FreeSurface( p.tab6[i]);
+   SDL_FreeSurface( p.tab7[i]);
+    SDL_FreeSurface( p.tab8[i]);
+  SDL_FreeSurface( p.tabvie[i]);
+   }
+    SDL_FreeSurface(p.imgscore);                               
+    SDL_FreeSurface(p.imgscore);
+    SDL_FreeSurface(b.imgbackground); 
+  SDL_FreeSurface(ecran);
 
- 
+}
 
 
 
