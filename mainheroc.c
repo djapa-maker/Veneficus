@@ -51,7 +51,7 @@ p.frapper=0;
                     if ((v!=7)&&(p.jump==0)&&(p.frapper==0)&&(p.fall==1))
                     {
                         p.direction=0;
-                        p.acceleration+=0.005;
+                        p.acceleration+=0.007;
                         printf("plus:%f \n",p.acceleration);
                         deplacerPerso(&p,dt,&dx);
                     }
