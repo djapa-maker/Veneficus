@@ -7,33 +7,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#define vitesse_max 40
+#define G 10
 
 int main(int argc, char *argv[])
 {
     SDL_Event event;
-    SDL_Surface *ecran,*imgbackground ;
-    Uint32 dt, t_prev;
+    SDL_Surface *ecran, *imgbackground;
     perso p;
     back b;
-    int dx,v=1,ts=0,dy;
+    Input I;
+    int v = 1, ts = 0;
     int continuer = 1;
- 
-    int posint,poslimit;
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
     TTF_Init();
     ecran = SDL_SetVideoMode(1399, 787, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
-
+    initialiser_input(&I);
     initPerso(&p);
     init(&b);
     SDL_EnableKeyRepeat(90, 90);
     while (continuer)
     {
 
-
-        t_prev=SDL_GetTicks();
-        aff(b,ecran);
-afficherPerso(p,ecran,dx,ts,v,dy);
-p.frapper=0;
+        aff(b, ecran);
+        afficherPerso(p, ecran, ts, v, I);
+        I.jump=0;
         while (SDL_PollEvent(&event))
         {
             switch (event.type)
@@ -47,85 +45,98 @@ p.frapper=0;
                     continuer = 0;
                     break;
                 case SDLK_RIGHT:
-                
-                    if ((v!=7)&&(p.jump==0)&&(p.frapper==0)&&(p.fall==1))
+                    if (v != 7)
                     {
-                        p.direction=0;
-                        p.acceleration+=0.007;
-                        printf("plus:%f \n",p.acceleration);
-                        deplacerPerso(&p,dt,&dx);
+                        I.right = 1;
+                         p.direction = 0;
                     }
                     break;
                 case SDLK_LEFT:
-                    if ((v!=7)&&(p.jump==0)&&(p.frapper==0)&&(p.fall==1))
+                    if (v != 7)
                     {
-                        p.direction=1;
-                        p.acceleration-=0.003;
-                        printf("moins:%f \n",p.acceleration);
-                        deplacerPerso(&p,dt,&dx);
+                        I.left = 1;
+                        p.direction = 1;
                     }
                     break;
                 case SDLK_SPACE:
-                    if ((v!=7)&&(p.jump==0)&&(p.fall==1))
-                    {p.frapper=1;
-                     printf("frapper1\n");}
+                    if (v != 7){
+                        I.fight= 1;
+                        printf("frapper1\n");}
+                    
                     break;
 
                 case SDLK_UP:
-                if (v!=7)
-           	p.jump=1; 
-
-
+                    if ((p.poshero.y == 400) && (v != 7))
+                    {I.jump=1;
+                       saut(&p);
+                    }
 
                     break;
-                case  SDLK_KP_PLUS:
-                    if (ts<9999)
+                case SDLK_KP_PLUS:
+                    if (ts < 9999)
                         ts++;
                     break;
                 case SDLK_KP_MINUS:
-                    if (ts<9999)
+                    if (ts < 9999)
                         ts--;
                     break;
                 case SDLK_LCTRL:
-                    if (v<7)
+                    if (v < 7)
                         v++;
                     break;
+                     
+                }
+                break;
+            case SDL_KEYUP:
+                switch (event.key.keysym.sym)
+                {
+                case SDLK_RIGHT:
+                    I.right = 0;
+                    p.X = 0;
+                    p.direction = 0;
+                    break;
+                case SDLK_LEFT:
+                    I.left = 0;
+                    p.X = 0;
+                    p.direction = 1;
+                    break;
+                    case SDLK_SPACE:
+                     I.fight=0;
+                     break;
                 }
                 break;
             }
         }
-
-        if ((dx>0)&&(p.distancedown==0)&&(p.distanceup!=1))
+        if ((I.right == 1) && (v != 7))
         {
-            p.acceleration-=0.0009;
-            printf("moins  auto: %f \n",p.acceleration);
-            deplacerPerso(&p,dt,&dx );
+            p.X++;
+            mouvementright(&p);
+            p.direction = 0;
+        }
+        else if ((I.left == 1) && (v != 7))
+        {
+            p.X++;
+            mouvementleft(&p);
+            p.direction = 1;
         }
 
 
-        else if ((dx<0)&&(p.distancedown==0)&&(p.distanceup!=1))
+
+        p.poshero.y += p.Y;
+        p.Y += G;
+        if (p.poshero.y > 400)
         {
-            p.acceleration+=0.001;
-            printf("plus auto: %f \n",p.acceleration);
-            deplacerPerso(&p,dt,&dx);
+            p.Y = 0;
+            p.poshero.y = 400;
         }
-            
-       
-       
-jumpin(&p,dt,dx);
-gravity(&p);
-animerperso(&p,ecran,dx,dy,v);
- dt=SDL_GetTicks()-t_prev;
- SDL_Flip(ecran);
+          
+       animerperso(&p, ecran, v, &I);
 
-
+        SDL_Flip(ecran);
     }
 
- freesurface(p,ecran, b);
-
-
+    freesurface(p, ecran, b);
 
     TTF_Quit;
     SDL_Quit();
 }
-
