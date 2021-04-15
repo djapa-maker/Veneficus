@@ -171,15 +171,15 @@ void afficherPerso(perso p, SDL_Surface *ecran, int ts, int v, Input I)
         printf("poshero %d", p.poshero.x);
         SDL_Delay(100);
     }
-   else if ((p.direction == 0) && (v != p.numvie)   && (p.Y != 0))// saut0up
+   else if ((p.direction == 0) && (v != p.numvie)   && (I.jump==1))// saut0up
     {printf("affichage saut \n");
-        SDL_Delay(200);
+        SDL_Delay(100);
         SDL_BlitSurface(p.tab7[p.frame6], NULL, ecran, &p.poshero);
     }
 
-    else if ((p.direction == 1) && (v != p.numvie) &&  (p.Y != 0) ) //saut1up
+    else if ((p.direction == 1) && (v != p.numvie) &&  (I.jump==1)) //saut1up
     {
-        SDL_Delay(200);
+        SDL_Delay(100);
         SDL_BlitSurface(p.tab8[p.frame7], NULL, ecran, &p.poshero);
     }
 
@@ -245,7 +245,6 @@ void initialiser_input(Input *I)
 {
     I->left = 0;
     I->right = 0;
-    I->jump = 0;
     I->fight = 0;
 }
 
@@ -313,20 +312,17 @@ void animerperso(perso *p, SDL_Surface *ecran, int v, Input *I)
 
         SDL_Delay(20);
     }
-    else if ((p->direction == 0) && (v != p->numvie)  && (p->Y != 0) )  // saut0
+    else if ((p->direction == 0) && (v != p->numvie)  &&(I->jump==1))  // saut0
     {
 printf("\nanimation saut\n");
-        SDL_Delay(100);
         if (p->frame6 == p->num7 - 2)
             (p->frame6) = 1;
         else
-            (p->frame6)++;
-
-        //SDL_Delay(150);
+           { (p->frame6)++;
+printf("num frame saut =%d\n",p->frame6);}
     }
-    else if ((p->direction == 1) && (v != p->numvie) && (p->Y != 0)) //saut1
+    else if ((p->direction == 1) && (v != p->numvie)&&(I->jump==1)) //saut1
     {
-        SDL_Delay(100);
         if (p->frame7 == p->num8 - 2)
             (p->frame7) = 1;
         else

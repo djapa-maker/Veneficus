@@ -51,6 +51,7 @@ int main()
   initPerso(&p);
   initmap(&m);
   initialiser_input(&I);
+    I.jump = 0;
 
   /**********boucle du jeu*******************/
   while (continuer)
@@ -244,6 +245,8 @@ int main()
     {
       p.Y = 0;
       p.poshero.y = 400;
+          I.jump = 0;
+
       // I.jump = 0;
     }
 
