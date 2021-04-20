@@ -45,11 +45,13 @@ void scrollingBack(Background *b, perso p, Input I)
     printf("scroll left abcisse cam: %d abcisse bg %d\n", b->scroll.x, b->posBack1.x);
   }
 
-  else if (I.jump == 1) //up
+  else if (p.poshero.y == 300) //up
   {
     b->scroll.y -= p.X;
     b->posBack1.y -= p.X;
     if (b->scroll.y <= 0)
       b->scroll.y = 0;
+          printf("jump col");
+
   }
 }
