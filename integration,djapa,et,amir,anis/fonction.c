@@ -47,14 +47,16 @@ int collisionPP(perso p, SDL_Surface *Masque, Background b)
 {
   SDL_Color col;
   if (p.direction == 0) //imin
-    col = GetPixel(Masque, p.poshero.x + p.poshero.w + b.scroll.x, p.poshero.y + (p.tab1[5]->h / 2) + b.scroll.y);
-  printf("abcisse point: %d ordonne point: %d", p.poshero.x + b.scroll.x, p.poshero.y + (p.tab1[5]->h / 2) + b.scroll.y);
-  if (p.direction == 1) //isar
-    col = GetPixel(Masque, p.poshero.x, p.poshero.y + (p.tab1[1]->h / 2));
+    col = GetPixel(Masque, p.poshero.x + (p.poshero.w-30) + b.scroll.x, p.poshero.y + (p.tab1[5]->h / 2) + b.scroll.y);
+  else if (p.direction == 1) //isar
+    col = GetPixel(Masque, p.poshero.x + (p.poshero.w-70) + b.scroll.x, p.poshero.y + (p.tab1[5]->h )/ 2+ b.scroll.y);
   //lfou9
   //col=GetPixel(Masque,p.posperso.x+(p.perso->w/2) ,p.posperso.y);
   //louta
-  // col=GetPixel(Masque,p.posperso.x+(p.perso->w/2),p.posperso.y+p.perso->h);
+  else if(p.Y!=0)
+  {printf("collision verticale\n");
+   col=GetPixel(Masque,p.poshero.x+(p.tab1[1]->w/2),p.poshero.y+p.tab1[5]->h);
+  }
   if ((col.r == 0) && (col.b == 0) && (col.g == 0))
   {
     return 1;

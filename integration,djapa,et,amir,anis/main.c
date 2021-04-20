@@ -9,6 +9,8 @@
 #include <string.h>
 #include "background.h"
 #include "hero.h"
+#include "enigmestat.h"
+#include "enigmealeatoire.h"
 #define vitesse_max 40
 #define G 10
 
@@ -31,6 +33,14 @@ int main()
   int interface = 1; // 1:6 c'est le jeu  de stage 1->6, 7 enigme 1, 8 enigme 2, 9 enigme 3 , 0 menu principale
   int input = 0;     //1 fleche right, 2 fleche left
 
+  enigme enig; //tout ce qui concerne enigme statique//
+  int reponsevraie = 0;
+
+  enigme1 e1; // tout ce qui concerne enigme alea sans fichier//
+  int reponsejuste = -1;
+  int test1 = 0;
+  int test2, test3;
+
   /*--------------------initialisation SDL*********/
   TTF_Init();
   SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
@@ -51,8 +61,14 @@ int main()
   initPerso(&p);
   initmap(&m);
   initialiser_input(&I);
-    I.jump = 0;
+  I.jump = 0;
 
+    //init enig//
+  //  init_enigme(&enig);
+
+    //init e1//
+    e1 = generer();
+    init_enigme1(&e1);
   /**********boucle du jeu*******************/
   while (continuer)
   {
@@ -68,7 +84,29 @@ int main()
       affichertemps(temps, ecran);
     }
     // udpate
+    ////***initilisation des enigmes ****////////
 
+
+    if (((b.scroll.x >= 6200) && (b.scroll.x <= 6250) && (reponsejuste != 1)))
+    {
+      test1 = 1;
+      afficherenigme(e1, ecran); //affichage de la 2 eme enigme
+
+      if (reponsejuste == 1)
+      {
+        test1 = 0;
+
+        affichage_repvraie(ecran, e1);
+      }
+
+      else if (reponsejuste == 0)
+      {
+        //yonkoslou fi score//
+
+        affichage_repfausse(ecran, e1);
+        test1 = 0;
+      }
+    }
     /****** Module input****/
     while (SDL_PollEvent(&event))
     {
@@ -83,7 +121,7 @@ int main()
         switch (event.key.keysym.sym)
         {
         case SDLK_RIGHT:
-          if (v != 7)
+          if ((v != 7) || (test1 == 0))
           {
             I.right = 1;
             p.direction = 0;
@@ -91,7 +129,7 @@ int main()
 
           break;
         case SDLK_LEFT:
-          if (v != 7)
+          if ((v != 7) || (test1 == 0))
           {
             I.left = 1;
             p.direction = 1;
@@ -138,8 +176,42 @@ int main()
           if (v < 7)
             v++;
           break;
-        }
+          ///input enigme alea sans fichiers//
+        case SDLK_KP1:
+          if (e1.numrepjuste == 0)
+          {
+            reponsejuste = 1;
+          }
+          else
+          {
+            reponsejuste = 0;
+          }
+          break;
 
+        case SDLK_KP2:
+          if (e1.numrepjuste == 1)
+          {
+            reponsejuste = 1;
+          }
+
+          else
+          {
+            SDL_Delay(2000);
+            reponsejuste = 0;
+          }
+
+          break;
+        case SDLK_KP3:
+          if (e1.numrepjuste == 2)
+          {
+            reponsejuste = 1;
+          }
+          else
+          {
+            reponsejuste = 0;
+          }
+          break;
+        }
         break;
       }
     }
@@ -148,7 +220,7 @@ int main()
 
     if (interface == 1)
     {
-      if ((I.right == 1) && (v != 7)) // fleche right
+      if ((I.right == 1) && (v != 7) && (test1 == 0)) // fleche right
       {
         if (p.poshero.x < (ecran->w / 2) || b.scroll.x >= (b.scroll.w - ecran->w)) // deplacement
         {
@@ -161,7 +233,7 @@ int main()
             p.direction = 0;
             /** update mini map***/
             if (m.pospoint.x <= m.posminimap.x + 1240)
-              m.pospoint.x += p.X;
+              m.pospoint.x += p.poshero.x/172;
             printf("dep right poshero %d  abcisse cam %d\n", p.poshero.x, b.scroll.x);
           }
           // else
@@ -185,15 +257,14 @@ int main()
             // p.X++;
             //mouvementright(&p);
             p.direction = 0;
-            //p.acceleration += 0.007;
-
+            if (m.pospoint.x <= m.posminimap.x + 1240)
+            m.pospoint.x += p.poshero.x/172;
             printf("p.X:%d \n", p.X);
             scrollingBack(&b, p, I);
           }
 
           /*update mini map***/
-          if (m.pospoint.x <= m.posminimap.x + 1240)
-            m.pospoint.x += 5;
+          /**/
         }
       } /*
           if (p.poshero.x >= (ecran->w - 239))
@@ -202,22 +273,25 @@ int main()
             m.pospoint.x = 100;
           }*/
 
-      else if ((v != 7) && (I.left == 1))
+      else if ((v != 7) && (I.left == 1) && (test1 == 0))
       {
         printf("input done");
         if ((b.scroll.x >= 50 && b.scroll.x < (b.scroll.w - ecran->w)) || (b.scroll.x == (b.scroll.w - ecran->w) && p.poshero.x <= 760))
         {
           //scrollingBack(&b, p, &p.X, dt);
- if (collisionPP(p, b.imageM, b) == 0) {
-          //p.X++;
-          //mouvementleft(&p);
-          p.direction = 1;
-          scrollingBack(&b, p, I);}
+          if (collisionPP(p, b.imageM, b) == 0)
+          {if (m.pospoint.x <= m.posminimap.x + 1240)
+            m.pospoint.x -= p.poshero.x/172;
+            //p.X++;
+            //mouvementleft(&p);
+            p.direction = 1;
+            scrollingBack(&b, p, I);
+          }
         }
 
         /*update mini map***/
-        if (m.pospoint.x >= m.posminimap.x + 1240)
-          m.pospoint.x -= 5;
+       /* if (m.pospoint.x >= m.posminimap.x + 1240)
+          m.pospoint.x -= p.poshero.x/80;*/
 
         else if (b.scroll.x < 50 || b.scroll.x >= (b.scroll.w - ecran->w))
         {
@@ -229,7 +303,7 @@ int main()
             p.direction = 1;
             printf("dep left poshero %d abcisse cam : %d\n", p.poshero.x, b.scroll.x);
             if (m.pospoint.x >= m.posminimap.x)
-              m.pospoint.x -= 5;
+              m.pospoint.x -= p.poshero.x/172;
             if (p.poshero.x <= 60)
             {
               p.poshero.x = 60;
@@ -245,7 +319,7 @@ int main()
     {
       p.Y = 0;
       p.poshero.y = 400;
-          I.jump = 0;
+      I.jump = 0;
 
       // I.jump = 0;
     }

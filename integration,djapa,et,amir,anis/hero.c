@@ -250,7 +250,7 @@ void initialiser_input(Input *I)
 
 void saut(perso *p)
 {
-    p->Y = -50;
+    p->Y = -65;
 }
 
 void animerperso(perso *p, SDL_Surface *ecran, int v, Input *I)
