@@ -1,0 +1,10 @@
+<map id="hero.h" name="hero.h">
+<area shape="rect" id="node1" title=" " alt="" coords="402,5,465,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="96,80,184,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="208,80,344,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="368,80,499,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="523,80,632,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="657,80,727,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="751,80,819,107"/>
+</map>
