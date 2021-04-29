@@ -1,11 +1,26 @@
-#ifndef FICHIER_H_INCLUDED
-#define FICHIER_H_INCLUDED
+#ifndef JEUX_H_INCLUDED
+#define JEUX_H_INCLUDED
 #include <stdio.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_ttf.h>
 #include <stdlib.h>
+typedef struct 
+{
+  SDL_Surface *imageDeFond1;
+    SDL_Surface *imageDeFond2;
+    SDL_Surface *imageDeFond3;
+    SDL_Surface *imageDeFond4;
+    SDL_Surface *imageDeFond5;
+    SDL_Surface *imageDeFond6;
+    SDL_Surface *imageDeFond7;
+    SDL_Surface *imageDeFond8;
+    SDL_Surface *imageDeFond9;
+    SDL_Surface *imageDeFond10;
+    SDL_Surface *imageDeFond11;
+    SDL_Rect positionFond;
+}animation;
 
 typedef struct
 {
@@ -63,11 +78,10 @@ typedef struct
 
 } menu;
 
-void menu1(int *page,int *continuer, menu m);
 void intialiser(menu *m);
 void affichage(int interface, int y, int f, int k, menu m, SDL_Surface *ecran, int n);
-void animation(menu m, SDL_Surface *ecran,int *t);
-void initanim(SDL_Surface *imgbackground[]);
+void Animation(menu m, SDL_Surface *ecran,int *t,animation anim);
+void initanim(animation *anim);
 void motion(int *page,int *continuer, menu m);
 
 #endif

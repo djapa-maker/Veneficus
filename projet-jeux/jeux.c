@@ -5,87 +5,36 @@
 #include <SDL/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-
-#ifdef __cplusplus
-    #include <cstdlib>
-#else
-    #include <stdlib.h>
-#endif
- 
-#include <SDL/SDL.h>
-#include <SDL/SDL_getenv.h>
-
-
-
-void animation(menu m, SDL_Surface *ecran, int *continuer)
+void initanim(animation *anim)
+{
+    anim->positionFond.x = 0;
+    anim->positionFond.y = 0;
+    // Chargement d'une image Bitmap dans une surface 
+    anim->imageDeFond1 = IMG_Load("1.png");
+    anim->imageDeFond2 = IMG_Load("2.png");
+    anim->imageDeFond3 = IMG_Load("3.png");
+    anim->imageDeFond4 = IMG_Load("4.png");
+    anim->imageDeFond5 = IMG_Load("5.png");
+    anim->imageDeFond6 = IMG_Load("6.png");
+    anim->imageDeFond7 = IMG_Load("7.png");
+    anim->imageDeFond8 = IMG_Load("8.png");
+    anim->imageDeFond9 = IMG_Load("9.png");
+    anim->imageDeFond10 = IMG_Load("10.png");
+    anim->imageDeFond11 = IMG_Load("11.png");
+}
+void Animation(menu m, SDL_Surface *ecran, int *continuer,animation anim)
 {
     int y,p,f, interface=0, n, z;
     int k=1;
     int page=0;
     int fullscren=2;
-    
-    SDL_Surface *imageDeFond1 = NULL;
-    SDL_Surface *imageDeFond2 = NULL;
-    SDL_Surface *imageDeFond3 = NULL;
-    SDL_Surface *imageDeFond4 = NULL;
-    SDL_Surface *imageDeFond5 = NULL;
-    SDL_Surface *imageDeFond6 = NULL;
-    SDL_Surface *imageDeFond7 = NULL;
-    SDL_Surface *imageDeFond8 = NULL;
-    SDL_Surface *imageDeFond9 = NULL;
-    SDL_Surface *imageDeFond10 = NULL;
-    SDL_Surface *imageDeFond11 = NULL;
-    SDL_Rect positionFond;
-   /* SDL_Rect src, dest;
-     src.x = 0;
-    src.y = 0;
-    src.w =imageDeFond1->w;
-    src.h =imageDeFond1->h;
-    dest.x = 100;
-    dest.y = 100;
-    dest.w = imageDeFond1->w*1.2;
-    dest.h = imageDeFond1->h*1.2;
-    dest.w = imageDeFond2->w*1.2;
-    dest.h = imageDeFond2->h*1.2;
-    dest.w = imageDeFond3->w*1.2;
-    dest.h = imageDeFond3->h*1.2;
-    dest.w = imageDeFond4->w*1.2;
-    dest.h = imageDeFond4->h*1.2;
-    dest.w = imageDeFond5->w*1.2;
-    dest.h = imageDeFond5->h*1.2;
-    dest.w = imageDeFond6->w*1.2;
-    dest.h = imageDeFond6->h*1.2;
-    dest.w = imageDeFond7->w*1.2;
-    dest.h = imageDeFond7->h*1.2;
-    dest.w = imageDeFond8->w*1.2;
-    dest.h = imageDeFond8->h*1.2;
-    dest.w = imageDeFond9->w*1.2;
-    dest.h = imageDeFond9->h*1.2;
-    dest.w = imageDeFond10->w*1.2;
-    dest.h = imageDeFond10->h*1.2;
-    dest.w = imageDeFond11->w*1.2;
-    dest.h = imageDeFond11->h*1.2;*/
-    positionFond.x = 0;
-    positionFond.y = 0;
+ 
     SDL_Init(SDL_INIT_VIDEO);
     ecran = SDL_SetVideoMode(1399, 787, 32, SDL_HWSURFACE);
     
     SDL_WM_SetCaption("Game", NULL);
 
- // Chargement d'une image Bitmap dans une surface 
-    imageDeFond1 = IMG_Load("1.png");
-    imageDeFond2 = IMG_Load("2.png");
-    imageDeFond3 = IMG_Load("3.png");
-    imageDeFond4 = IMG_Load("4.png");
-    imageDeFond5 = IMG_Load("5.png");
-    imageDeFond6 = IMG_Load("6.png");
-    imageDeFond7 = IMG_Load("7.png");
-    imageDeFond8 = IMG_Load("8.png");
-    imageDeFond9 = IMG_Load("9.png");
-    imageDeFond10 = IMG_Load("10.png");
-    imageDeFond11 = IMG_Load("11.png");
+ 
 
 
     
@@ -95,37 +44,31 @@ void animation(menu m, SDL_Surface *ecran, int *continuer)
 
   //affichage(interface, y, f, p, m, ecran, n);
   
-    while(*continuer)
-    {
     
-
             switch (k) //resolution normale
 		      {
-		      case 1: SDL_BlitSurface(imageDeFond1,NULL, ecran, &positionFond);break;
-		      case 2: SDL_BlitSurface(imageDeFond2,NULL, ecran,&positionFond);break;
-		      case 3: SDL_BlitSurface(imageDeFond3,NULL, ecran,&positionFond);break;
-		      case 4: SDL_BlitSurface(imageDeFond4,NULL, ecran,&positionFond);break;
-		      case 5: SDL_BlitSurface(imageDeFond5,NULL, ecran,&positionFond);break;
-		      case 6: SDL_BlitSurface(imageDeFond6,NULL, ecran,&positionFond);break;
-		      case 7: SDL_BlitSurface(imageDeFond7,NULL, ecran,&positionFond);break;
-		      case 8: SDL_BlitSurface(imageDeFond8,NULL, ecran,&positionFond);break;
-		      case 9: SDL_BlitSurface(imageDeFond9,NULL, ecran,&positionFond);break;
-		      case 10: SDL_BlitSurface(imageDeFond10,NULL, ecran,&positionFond);break;
-		      case 11: SDL_BlitSurface(imageDeFond11,NULL, ecran,&positionFond);break;
+		      case 1: SDL_BlitSurface(anim.imageDeFond1,NULL, ecran, &anim.positionFond);break;
+		      case 2: SDL_BlitSurface(anim.imageDeFond2,NULL, ecran,&anim.positionFond);break;
+		      case 3: SDL_BlitSurface(anim.imageDeFond3,NULL, ecran,&anim.positionFond);break;
+		      case 4: SDL_BlitSurface(anim.imageDeFond4,NULL, ecran,&anim.positionFond);break;
+		      case 5: SDL_BlitSurface(anim.imageDeFond5,NULL, ecran,&anim.positionFond);break;
+		      case 6: SDL_BlitSurface(anim.imageDeFond6,NULL, ecran,&anim.positionFond);break;
+		      case 7: SDL_BlitSurface(anim.imageDeFond7,NULL, ecran,&anim.positionFond);break;
+		      case 8: SDL_BlitSurface(anim.imageDeFond8,NULL, ecran,&anim.positionFond);break;
+		      case 9: SDL_BlitSurface(anim.imageDeFond9,NULL, ecran,&anim.positionFond);break;
+		      case 10: SDL_BlitSurface(anim.imageDeFond10,NULL, ecran,&anim.positionFond);break;
+		      case 11: SDL_BlitSurface(anim.imageDeFond11,NULL, ecran,&anim.positionFond);break;
       
 			}
                   k++;
               
-                 motion(&page,continuer, m);
+                motion(&page,continuer, m);
           
               
     
      if (k==11) {k=1;}
  
     SDL_Delay(100);
-   
-    
-   };
   
 }
 
@@ -443,6 +386,7 @@ void affichage(int interface, int y, int f, int k, menu m, SDL_Surface *ecran, i
 
 void intialiser(menu *m)
 {
+  
   m->imgnewgame = NULL;
   m->imgloadgame = NULL;
   m->imgmultijoueur = NULL;
@@ -559,17 +503,6 @@ void intialiser(menu *m)
   }
   SDL_WM_SetIcon(IMG_Load("icon.png"), NULL);
 }
-void menu1(int *page,int *continuer, menu m)
-{
-
-  SDL_Surface *ecran;
-
-  if(*page==0) 
-  {   
-    animation(m, ecran, continuer);
-  }
-}
-
 
 void motion(int *page,int *continuer, menu m)
 {
