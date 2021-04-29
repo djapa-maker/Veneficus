@@ -1,0 +1,132 @@
+\hypertarget{background_8c}{}\doxysection{Référence du fichier background.\+c}
+\label{background_8c}\index{background.c@{background.c}}
+
+
+Testing Program.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+mixer.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}background.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hero.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de background.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{background_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{background_8c_a0a4edc94e7b2a235f7297ed1185dabd7}{init\+Back}} (\mbox{\hyperlink{structBackground}{Background}} $\ast$b)
+\begin{DoxyCompactList}\small\item\em To initialize the background b . \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{background_8c_a113ce678e1d36ba7a7c02cc06e60f6a2}{afficher\+Back}} (\mbox{\hyperlink{structBackground}{Background}} b, S\+D\+L\+\_\+\+Surface $\ast$ecran)
+\begin{DoxyCompactList}\small\item\em To show the background b . \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{background_8c_a6504be521e20b0f537e805443a563221}{scrolling\+Back}} (\mbox{\hyperlink{structBackground}{Background}} $\ast$b, \mbox{\hyperlink{structperso}{perso}} p, \mbox{\hyperlink{structInput}{Input}} I)
+\begin{DoxyCompactList}\small\item\em To scroll the background to the left and right. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Testing Program. 
+
+\begin{DoxyAuthor}{Auteur}
+Computer wizards Team 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+Apr 01, 2015
+\end{DoxyDate}
+Testing program for background scrollilng $\ast$
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{background_8c_a113ce678e1d36ba7a7c02cc06e60f6a2}\label{background_8c_a113ce678e1d36ba7a7c02cc06e60f6a2}} 
+\index{background.c@{background.c}!afficherBack@{afficherBack}}
+\index{afficherBack@{afficherBack}!background.c@{background.c}}
+\doxysubsubsection{\texorpdfstring{afficherBack()}{afficherBack()}}
+{\footnotesize\ttfamily void afficher\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBackground}{Background}}}]{b,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{ecran }\end{DoxyParamCaption})}
+
+
+
+To show the background b . 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em scren} & the screen \\
+\hline
+{\em b} & the background \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nothing 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{background_8c_a113ce678e1d36ba7a7c02cc06e60f6a2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{background_8c_a0a4edc94e7b2a235f7297ed1185dabd7}\label{background_8c_a0a4edc94e7b2a235f7297ed1185dabd7}} 
+\index{background.c@{background.c}!initBack@{initBack}}
+\index{initBack@{initBack}!background.c@{background.c}}
+\doxysubsubsection{\texorpdfstring{initBack()}{initBack()}}
+{\footnotesize\ttfamily void init\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBackground}{Background}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+To initialize the background b . 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em b} & the background \\
+\hline
+{\em url} & the url of the image ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nothing 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{background_8c_a0a4edc94e7b2a235f7297ed1185dabd7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{background_8c_a6504be521e20b0f537e805443a563221}\label{background_8c_a6504be521e20b0f537e805443a563221}} 
+\index{background.c@{background.c}!scrollingBack@{scrollingBack}}
+\index{scrollingBack@{scrollingBack}!background.c@{background.c}}
+\doxysubsubsection{\texorpdfstring{scrollingBack()}{scrollingBack()}}
+{\footnotesize\ttfamily void scrolling\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBackground}{Background}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{structperso}{perso}}}]{p,  }\item[{\mbox{\hyperlink{structInput}{Input}}}]{I }\end{DoxyParamCaption})}
+
+
+
+To scroll the background to the left and right. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em b} & the background \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nothing 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{background_8c_a6504be521e20b0f537e805443a563221_icgraph}
+\end{center}
+\end{figure}
