@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "sdl_image.h": "c",
+        "enigmealeatoire.h": "c",
+        "background.h": "c",
+        "stdlib.h": "c",
+        "jeux.h": "c",
+        "hero.h": "c"
+    }
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Veneficus:  Fichier source de enigmealeatoire.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Veneficus
+   &#160;<span id="projectnumber">1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">enigmealeatoire.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="enigmealeatoire_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ENIGME_ALEATOIRE_SANS_FICHIERS_H_INCLUDED</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ENIGME_ALEATOIRE_SANS_FICHIERS_H_INCLUDED</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include&lt;string.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;SDL/SDL.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;SDL/SDL_image.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;SDL/SDL_mixer.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;SDL/SDL_ttf.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include&lt;math.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structenigme1.html">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structenigme1.html#a533ad42c1bfcee07aedc3f1cf6f6924d">   17</a></span>&#160;{<span class="keywordtype">char</span> question[200];</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structenigme1.html#aeb23051ca4b51855d813abd12fc8cdfc">   18</a></span>&#160;    <span class="keywordtype">char</span> reponse1[200];</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structenigme1.html#a6e802eb30b4f2f16feae3ada9a4b622f">   19</a></span>&#160;    <span class="keywordtype">char</span> reponse2[200];</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structenigme1.html#a0af89d1d4011c7aaef3c41bb18c8e07d">   20</a></span>&#160;    <span class="keywordtype">char</span> reponse3[200];</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structenigme1.html#ad81cc43e94d5497e2b6ca17896a3b080">   21</a></span>&#160;     SDL_Surface *<a class="code" href="structenigme1.html#ad81cc43e94d5497e2b6ca17896a3b080">img</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structenigme1.html#a2da0ea3695b8a39fc403ead0bdd32368">   22</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structenigme1.html#a2da0ea3695b8a39fc403ead0bdd32368">numrepjuste</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structenigme1.html#a15c56ecb833ff1fae97a54fa1eee375f">   24</a></span>&#160;TTF_Font *police,*policequestion;;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structenigme1.html#a066df252d2fc437eb70013aec91f6715">   25</a></span>&#160;    SDL_Surface *textequestion,*texterep1,*texterep2,*<a class="code" href="structenigme1.html#a066df252d2fc437eb70013aec91f6715">texterep3</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structenigme1.html#a4fab7750fa475ffddb9cce81c1416d1c">   26</a></span>&#160;SDL_Rect posquestion,posreponse1,posreponse2,<a class="code" href="structenigme1.html#a4fab7750fa475ffddb9cce81c1416d1c">posreponse3</a>;                 <span class="comment">//ce qui concerne l&#39;affichage de l&#39;enigme//</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structenigme1.html#a15c4f8d80809e9710e954ba9681ce5e1">   27</a></span>&#160;SDL_Rect <a class="code" href="structenigme1.html#a15c4f8d80809e9710e954ba9681ce5e1">posimg</a>,posboard; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structenigme1.html#a7d548504890c53e82ab6f1ebc691e559">   28</a></span>&#160;SDL_Surface *<a class="code" href="structenigme1.html#a7d548504890c53e82ab6f1ebc691e559">imgboard</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structenigme1.html#a9042af661e0e89cba8a71d3cf963fd69">   31</a></span>&#160;SDL_Rect <a class="code" href="structenigme1.html#a9042af661e0e89cba8a71d3cf963fd69">posbravo</a>;  <span class="comment">//ce qui concerne l&#39;affichage de la reponse vraie//</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structenigme1.html#a106cc2890182b25aa3f082cd91a11e63">   32</a></span>&#160;  SDL_Surface *<a class="code" href="structenigme1.html#a106cc2890182b25aa3f082cd91a11e63">textebravo</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structenigme1.html#ab33ab0cb6683a001b5d9f93d48f6a9e5">   33</a></span>&#160;  TTF_Font *<a class="code" href="structenigme1.html#ab33ab0cb6683a001b5d9f93d48f6a9e5">policebravo</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structenigme1.html#a7719af30b9dbd2184fa3621b6c64c5d4">   37</a></span>&#160;  SDL_Rect <a class="code" href="structenigme1.html#a7719af30b9dbd2184fa3621b6c64c5d4">posincorrecte</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structenigme1.html#a59e2fd47c12f0a0daeb50582b7efe066">   38</a></span>&#160;TTF_Font *<a class="code" href="structenigme1.html#a59e2fd47c12f0a0daeb50582b7efe066">policeincorrecte</a>;        <span class="comment">//ce qui concerne l&#39;affichage de la reponse fausse//</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structenigme1.html#a50efcce24fa508c01092ca779a4bd923">   39</a></span>&#160;SDL_Surface *<a class="code" href="structenigme1.html#a50efcce24fa508c01092ca779a4bd923">texteincorrecte</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}<a class="code" href="structenigme1.html">enigme1</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<a class="code" href="structenigme1.html">enigme1</a> <a class="code" href="enigmealeatoire_8h.html#a2d08b54d83e0302d942b5c57958bfba8">generer</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">void</span> <a class="code" href="enigmealeatoire_8h.html#af98d4b81e6b0afb0e7c147e9da13927e">afficherenigme</a>(<a class="code" href="structenigme1.html">enigme1</a> e1,SDL_Surface *ecran);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span> <a class="code" href="enigmealeatoire_8h.html#a6d6f5b5d88e144ddb62fa8b342038c47">affichage_repvraie</a>(  SDL_Surface *ecran,<a class="code" href="structenigme1.html">enigme1</a> e1);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> <a class="code" href="enigmealeatoire_8h.html#a5717d47af38a42f4d8035c65584f9bc2">affichage_repfausse</a>(  SDL_Surface *ecran,<a class="code" href="structenigme1.html">enigme1</a> e1);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="enigmealeatoire_8h.html#a882b8dc842e891425359e4cc5e7352b1">init_enigme1</a>(<a class="code" href="structenigme1.html">enigme1</a> *e1);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="enigmealeatoire_8h.html#acdc39de26e403329ee66ac2b6eab5386">free_enigmealea</a>(<a class="code" href="structenigme1.html">enigme1</a> *e1);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif // ENIGME_ALEATOIRE_SANS_FICHIERS_H_INCLUDED</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="astructenigme1_html_a9153de3dd4e82c00a06d88c3f894cd61"><div class="ttname"><a href="structenigme1.html#a9153de3dd4e82c00a06d88c3f894cd61">enigme1::posboard</a></div><div class="ttdeci">SDL_Rect posboard</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:27</div></div>
+<div class="ttc" id="astructenigme1_html_a59e2fd47c12f0a0daeb50582b7efe066"><div class="ttname"><a href="structenigme1.html#a59e2fd47c12f0a0daeb50582b7efe066">enigme1::policeincorrecte</a></div><div class="ttdeci">TTF_Font * policeincorrecte</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:38</div></div>
+<div class="ttc" id="aenigmealeatoire_8h_html_acdc39de26e403329ee66ac2b6eab5386"><div class="ttname"><a href="enigmealeatoire_8h.html#acdc39de26e403329ee66ac2b6eab5386">free_enigmealea</a></div><div class="ttdeci">void free_enigmealea(enigme1 *e1)</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:273</div></div>
+<div class="ttc" id="aenigmealeatoire_8h_html_af98d4b81e6b0afb0e7c147e9da13927e"><div class="ttname"><a href="enigmealeatoire_8h.html#af98d4b81e6b0afb0e7c147e9da13927e">afficherenigme</a></div><div class="ttdeci">void afficherenigme(enigme1 e1, SDL_Surface *ecran)</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:224</div></div>
+<div class="ttc" id="astructenigme1_html_a15c56ecb833ff1fae97a54fa1eee375f"><div class="ttname"><a href="structenigme1.html#a15c56ecb833ff1fae97a54fa1eee375f">enigme1::textequestion</a></div><div class="ttdeci">SDL_Surface * textequestion</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:24</div></div>
+<div class="ttc" id="astructenigme1_html_ad81cc43e94d5497e2b6ca17896a3b080"><div class="ttname"><a href="structenigme1.html#ad81cc43e94d5497e2b6ca17896a3b080">enigme1::img</a></div><div class="ttdeci">SDL_Surface * img</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:21</div></div>
+<div class="ttc" id="astructenigme1_html_ae3443fec54d17bd517c00e92e26019c0"><div class="ttname"><a href="structenigme1.html#ae3443fec54d17bd517c00e92e26019c0">enigme1::posreponse1</a></div><div class="ttdeci">SDL_Rect posreponse1</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:26</div></div>
+<div class="ttc" id="aenigmealeatoire_8h_html_a6d6f5b5d88e144ddb62fa8b342038c47"><div class="ttname"><a href="enigmealeatoire_8h.html#a6d6f5b5d88e144ddb62fa8b342038c47">affichage_repvraie</a></div><div class="ttdeci">void affichage_repvraie(SDL_Surface *ecran, enigme1 e1)</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:256</div></div>
+<div class="ttc" id="astructenigme1_html_a066df252d2fc437eb70013aec91f6715"><div class="ttname"><a href="structenigme1.html#a066df252d2fc437eb70013aec91f6715">enigme1::texterep3</a></div><div class="ttdeci">SDL_Surface * texterep3</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:25</div></div>
+<div class="ttc" id="astructenigme1_html_a106cc2890182b25aa3f082cd91a11e63"><div class="ttname"><a href="structenigme1.html#a106cc2890182b25aa3f082cd91a11e63">enigme1::textebravo</a></div><div class="ttdeci">SDL_Surface * textebravo</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:32</div></div>
+<div class="ttc" id="astructenigme1_html_a4fab7750fa475ffddb9cce81c1416d1c"><div class="ttname"><a href="structenigme1.html#a4fab7750fa475ffddb9cce81c1416d1c">enigme1::posreponse3</a></div><div class="ttdeci">SDL_Rect posreponse3</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:26</div></div>
+<div class="ttc" id="astructenigme1_html_a6e6adcad6f7abc97021f25499ed3c8ba"><div class="ttname"><a href="structenigme1.html#a6e6adcad6f7abc97021f25499ed3c8ba">enigme1::posreponse2</a></div><div class="ttdeci">SDL_Rect posreponse2</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:26</div></div>
+<div class="ttc" id="aenigmealeatoire_8c_html_a882b8dc842e891425359e4cc5e7352b1"><div class="ttname"><a href="enigmealeatoire_8c.html#a882b8dc842e891425359e4cc5e7352b1">init_enigme1</a></div><div class="ttdeci">void init_enigme1(enigme1 *e1)</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:11</div></div>
+<div class="ttc" id="astructenigme1_html_a7719af30b9dbd2184fa3621b6c64c5d4"><div class="ttname"><a href="structenigme1.html#a7719af30b9dbd2184fa3621b6c64c5d4">enigme1::posincorrecte</a></div><div class="ttdeci">SDL_Rect posincorrecte</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:37</div></div>
+<div class="ttc" id="astructenigme1_html_a533ad42c1bfcee07aedc3f1cf6f6924d"><div class="ttname"><a href="structenigme1.html#a533ad42c1bfcee07aedc3f1cf6f6924d">enigme1::question</a></div><div class="ttdeci">char question[200]</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:17</div></div>
+<div class="ttc" id="aenigmealeatoire_8c_html_acdc39de26e403329ee66ac2b6eab5386"><div class="ttname"><a href="enigmealeatoire_8c.html#acdc39de26e403329ee66ac2b6eab5386">free_enigmealea</a></div><div class="ttdeci">void free_enigmealea(enigme1 *e1)</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:273</div></div>
+<div class="ttc" id="astructenigme1_html_ad1424ce3baa10d6d5549f03dc8221046"><div class="ttname"><a href="structenigme1.html#ad1424ce3baa10d6d5549f03dc8221046">enigme1::posquestion</a></div><div class="ttdeci">SDL_Rect posquestion</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:26</div></div>
+<div class="ttc" id="aenigmealeatoire_8c_html_af98d4b81e6b0afb0e7c147e9da13927e"><div class="ttname"><a href="enigmealeatoire_8c.html#af98d4b81e6b0afb0e7c147e9da13927e">afficherenigme</a></div><div class="ttdeci">void afficherenigme(enigme1 e1, SDL_Surface *ecran)</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:224</div></div>
+<div class="ttc" id="aenigmealeatoire_8c_html_a5717d47af38a42f4d8035c65584f9bc2"><div class="ttname"><a href="enigmealeatoire_8c.html#a5717d47af38a42f4d8035c65584f9bc2">affichage_repfausse</a></div><div class="ttdeci">void affichage_repfausse(SDL_Surface *ecran, enigme1 e1)</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:266</div></div>
+<div class="ttc" id="aenigmealeatoire_8h_html_a882b8dc842e891425359e4cc5e7352b1"><div class="ttname"><a href="enigmealeatoire_8h.html#a882b8dc842e891425359e4cc5e7352b1">init_enigme1</a></div><div class="ttdeci">void init_enigme1(enigme1 *e1)</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:11</div></div>
+<div class="ttc" id="astructenigme1_html_ab33ab0cb6683a001b5d9f93d48f6a9e5"><div class="ttname"><a href="structenigme1.html#ab33ab0cb6683a001b5d9f93d48f6a9e5">enigme1::policebravo</a></div><div class="ttdeci">TTF_Font * policebravo</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:33</div></div>
+<div class="ttc" id="aenigmealeatoire_8h_html"><div class="ttname"><a href="enigmealeatoire_8h.html">enigmealeatoire.h</a></div></div>
+<div class="ttc" id="astructenigme1_html_a2b1a8217575a6b71d317338632fb363b"><div class="ttname"><a href="structenigme1.html#a2b1a8217575a6b71d317338632fb363b">enigme1::policequestion</a></div><div class="ttdeci">TTF_Font * policequestion</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:24</div></div>
+<div class="ttc" id="astructenigme1_html_a0af89d1d4011c7aaef3c41bb18c8e07d"><div class="ttname"><a href="structenigme1.html#a0af89d1d4011c7aaef3c41bb18c8e07d">enigme1::reponse3</a></div><div class="ttdeci">char reponse3[200]</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:20</div></div>
+<div class="ttc" id="astructenigme1_html_a3e6e10f56ed46939156ee014afd59634"><div class="ttname"><a href="structenigme1.html#a3e6e10f56ed46939156ee014afd59634">enigme1::texterep1</a></div><div class="ttdeci">SDL_Surface * texterep1</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:25</div></div>
+<div class="ttc" id="astructenigme1_html_a81487a65ef257784ac368e69aaaa2d7d"><div class="ttname"><a href="structenigme1.html#a81487a65ef257784ac368e69aaaa2d7d">enigme1::texterep2</a></div><div class="ttdeci">SDL_Surface * texterep2</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:25</div></div>
+<div class="ttc" id="aenigmealeatoire_8c_html_a2d08b54d83e0302d942b5c57958bfba8"><div class="ttname"><a href="enigmealeatoire_8c.html#a2d08b54d83e0302d942b5c57958bfba8">generer</a></div><div class="ttdeci">enigme1 generer()</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:84</div></div>
+<div class="ttc" id="aenigmealeatoire_8h_html_a2d08b54d83e0302d942b5c57958bfba8"><div class="ttname"><a href="enigmealeatoire_8h.html#a2d08b54d83e0302d942b5c57958bfba8">generer</a></div><div class="ttdeci">enigme1 generer()</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:84</div></div>
+<div class="ttc" id="astructenigme1_html_a7d548504890c53e82ab6f1ebc691e559"><div class="ttname"><a href="structenigme1.html#a7d548504890c53e82ab6f1ebc691e559">enigme1::imgboard</a></div><div class="ttdeci">SDL_Surface * imgboard</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:28</div></div>
+<div class="ttc" id="aenigmealeatoire_8c_html_a6d6f5b5d88e144ddb62fa8b342038c47"><div class="ttname"><a href="enigmealeatoire_8c.html#a6d6f5b5d88e144ddb62fa8b342038c47">affichage_repvraie</a></div><div class="ttdeci">void affichage_repvraie(SDL_Surface *ecran, enigme1 e1)</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:256</div></div>
+<div class="ttc" id="astructenigme1_html_a15c4f8d80809e9710e954ba9681ce5e1"><div class="ttname"><a href="structenigme1.html#a15c4f8d80809e9710e954ba9681ce5e1">enigme1::posimg</a></div><div class="ttdeci">SDL_Rect posimg</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:27</div></div>
+<div class="ttc" id="aenigmealeatoire_8h_html_a5717d47af38a42f4d8035c65584f9bc2"><div class="ttname"><a href="enigmealeatoire_8h.html#a5717d47af38a42f4d8035c65584f9bc2">affichage_repfausse</a></div><div class="ttdeci">void affichage_repfausse(SDL_Surface *ecran, enigme1 e1)</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.c:266</div></div>
+<div class="ttc" id="astructenigme1_html_a50efcce24fa508c01092ca779a4bd923"><div class="ttname"><a href="structenigme1.html#a50efcce24fa508c01092ca779a4bd923">enigme1::texteincorrecte</a></div><div class="ttdeci">SDL_Surface * texteincorrecte</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:39</div></div>
+<div class="ttc" id="astructenigme1_html_a9042af661e0e89cba8a71d3cf963fd69"><div class="ttname"><a href="structenigme1.html#a9042af661e0e89cba8a71d3cf963fd69">enigme1::posbravo</a></div><div class="ttdeci">SDL_Rect posbravo</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:31</div></div>
+<div class="ttc" id="astructenigme1_html_a2da0ea3695b8a39fc403ead0bdd32368"><div class="ttname"><a href="structenigme1.html#a2da0ea3695b8a39fc403ead0bdd32368">enigme1::numrepjuste</a></div><div class="ttdeci">int numrepjuste</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:22</div></div>
+<div class="ttc" id="astructenigme1_html_af28cbd9647ae24519ead7631734e08d7"><div class="ttname"><a href="structenigme1.html#af28cbd9647ae24519ead7631734e08d7">enigme1::police</a></div><div class="ttdeci">TTF_Font * police</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:24</div></div>
+<div class="ttc" id="astructenigme1_html_a6e802eb30b4f2f16feae3ada9a4b622f"><div class="ttname"><a href="structenigme1.html#a6e802eb30b4f2f16feae3ada9a4b622f">enigme1::reponse2</a></div><div class="ttdeci">char reponse2[200]</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:19</div></div>
+<div class="ttc" id="astructenigme1_html"><div class="ttname"><a href="structenigme1.html">enigme1</a></div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:16</div></div>
+<div class="ttc" id="astructenigme1_html_aeb23051ca4b51855d813abd12fc8cdfc"><div class="ttname"><a href="structenigme1.html#aeb23051ca4b51855d813abd12fc8cdfc">enigme1::reponse1</a></div><div class="ttdeci">char reponse1[200]</div><div class="ttdef"><b>Definition:</b> enigmealeatoire.h:18</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

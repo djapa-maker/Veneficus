@@ -1,0 +1,191 @@
+\hypertarget{background_8h}{}\doxysection{Référence du fichier background.\+h}
+\label{background_8h}\index{background.h@{background.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+mixer.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hero.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de background.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{background_8h__incl}
+\end{center}
+\end{figure}
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{background_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Structures de données}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structminimap}{minimap}}
+\item 
+struct \mbox{\hyperlink{structBackground}{Background}}
+\begin{DoxyCompactList}\small\item\em struct for backround \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{background_8h_a0a4edc94e7b2a235f7297ed1185dabd7}{init\+Back}} (\mbox{\hyperlink{structBackground}{Background}} $\ast$b)
+\begin{DoxyCompactList}\small\item\em To initialize the background b . \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{background_8h_a113ce678e1d36ba7a7c02cc06e60f6a2}{afficher\+Back}} (\mbox{\hyperlink{structBackground}{Background}} b, S\+D\+L\+\_\+\+Surface $\ast$ecran)
+\begin{DoxyCompactList}\small\item\em To show the background b . \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{background_8h_a6504be521e20b0f537e805443a563221}{scrolling\+Back}} (\mbox{\hyperlink{structBackground}{Background}} $\ast$b, \mbox{\hyperlink{structperso}{perso}} p, \mbox{\hyperlink{structInput}{Input}} I)
+\begin{DoxyCompactList}\small\item\em To scroll the background to the left and right. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{background_8h_a7f110f1d3e115ac51d8b89771e6bc4b5}{initmap}} (\mbox{\hyperlink{structminimap}{minimap}} $\ast$m)
+\item 
+void \mbox{\hyperlink{background_8h_ac75923f5bb04a245e166a6d5a9abd710}{afficherminimap}} (\mbox{\hyperlink{structminimap}{minimap}} m, S\+D\+L\+\_\+\+Surface $\ast$screen)
+\item 
+void \mbox{\hyperlink{background_8h_a767c5e402598f47e52194019518861e0}{affichertemps}} (int temps, S\+D\+L\+\_\+\+Surface $\ast$screen)
+\item 
+int \mbox{\hyperlink{background_8h_a3c94b38646a8ff025d7a43621cb3c1de}{collision\+PP}} (\mbox{\hyperlink{structperso}{perso}} p, S\+D\+L\+\_\+\+Surface $\ast$Masque, \mbox{\hyperlink{structBackground}{Background}} b, \mbox{\hyperlink{structInput}{Input}} I)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{background_8h_a113ce678e1d36ba7a7c02cc06e60f6a2}\label{background_8h_a113ce678e1d36ba7a7c02cc06e60f6a2}} 
+\index{background.h@{background.h}!afficherBack@{afficherBack}}
+\index{afficherBack@{afficherBack}!background.h@{background.h}}
+\doxysubsubsection{\texorpdfstring{afficherBack()}{afficherBack()}}
+{\footnotesize\ttfamily void afficher\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBackground}{Background}}}]{b,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{ecran }\end{DoxyParamCaption})}
+
+
+
+To show the background b . 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em scren} & the screen \\
+\hline
+{\em b} & the background \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nothing 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{background_8h_a113ce678e1d36ba7a7c02cc06e60f6a2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{background_8h_ac75923f5bb04a245e166a6d5a9abd710}\label{background_8h_ac75923f5bb04a245e166a6d5a9abd710}} 
+\index{background.h@{background.h}!afficherminimap@{afficherminimap}}
+\index{afficherminimap@{afficherminimap}!background.h@{background.h}}
+\doxysubsubsection{\texorpdfstring{afficherminimap()}{afficherminimap()}}
+{\footnotesize\ttfamily void afficherminimap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structminimap}{minimap}}}]{m,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen }\end{DoxyParamCaption})}
+
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{background_8h_ac75923f5bb04a245e166a6d5a9abd710_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{background_8h_a767c5e402598f47e52194019518861e0}\label{background_8h_a767c5e402598f47e52194019518861e0}} 
+\index{background.h@{background.h}!affichertemps@{affichertemps}}
+\index{affichertemps@{affichertemps}!background.h@{background.h}}
+\doxysubsubsection{\texorpdfstring{affichertemps()}{affichertemps()}}
+{\footnotesize\ttfamily void affichertemps (\begin{DoxyParamCaption}\item[{int}]{temps,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen }\end{DoxyParamCaption})}
+
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{background_8h_a767c5e402598f47e52194019518861e0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{background_8h_a3c94b38646a8ff025d7a43621cb3c1de}\label{background_8h_a3c94b38646a8ff025d7a43621cb3c1de}} 
+\index{background.h@{background.h}!collisionPP@{collisionPP}}
+\index{collisionPP@{collisionPP}!background.h@{background.h}}
+\doxysubsubsection{\texorpdfstring{collisionPP()}{collisionPP()}}
+{\footnotesize\ttfamily int collision\+PP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structperso}{perso}}}]{p,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{Masque,  }\item[{\mbox{\hyperlink{structBackground}{Background}}}]{b,  }\item[{\mbox{\hyperlink{structInput}{Input}}}]{I }\end{DoxyParamCaption})}
+
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{background_8h_a3c94b38646a8ff025d7a43621cb3c1de_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{background_8h_a0a4edc94e7b2a235f7297ed1185dabd7}\label{background_8h_a0a4edc94e7b2a235f7297ed1185dabd7}} 
+\index{background.h@{background.h}!initBack@{initBack}}
+\index{initBack@{initBack}!background.h@{background.h}}
+\doxysubsubsection{\texorpdfstring{initBack()}{initBack()}}
+{\footnotesize\ttfamily void init\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBackground}{Background}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+To initialize the background b . 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em b} & the background \\
+\hline
+{\em url} & the url of the image ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nothing 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{background_8h_a0a4edc94e7b2a235f7297ed1185dabd7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{background_8h_a7f110f1d3e115ac51d8b89771e6bc4b5}\label{background_8h_a7f110f1d3e115ac51d8b89771e6bc4b5}} 
+\index{background.h@{background.h}!initmap@{initmap}}
+\index{initmap@{initmap}!background.h@{background.h}}
+\doxysubsubsection{\texorpdfstring{initmap()}{initmap()}}
+{\footnotesize\ttfamily void initmap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structminimap}{minimap}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{background_8h_a7f110f1d3e115ac51d8b89771e6bc4b5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{background_8h_a6504be521e20b0f537e805443a563221}\label{background_8h_a6504be521e20b0f537e805443a563221}} 
+\index{background.h@{background.h}!scrollingBack@{scrollingBack}}
+\index{scrollingBack@{scrollingBack}!background.h@{background.h}}
+\doxysubsubsection{\texorpdfstring{scrollingBack()}{scrollingBack()}}
+{\footnotesize\ttfamily void scrolling\+Back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structBackground}{Background}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{structperso}{perso}}}]{p,  }\item[{\mbox{\hyperlink{structInput}{Input}}}]{I }\end{DoxyParamCaption})}
+
+
+
+To scroll the background to the left and right. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em b} & the background \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nothing 
+\end{DoxyReturn}
+Voici le graphe des appelants de cette fonction \+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{background_8h_a6504be521e20b0f537e805443a563221_icgraph}
+\end{center}
+\end{figure}

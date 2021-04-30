@@ -1,0 +1,11 @@
+<map id="hero.h" name="hero.h">
+<area shape="rect" id="node1" title=" " alt="" coords="390,5,453,32"/>
+<area shape="rect" id="node2" href="$background_8h.html" title=" " alt="" coords="237,80,347,107"/>
+<area shape="rect" id="node3" href="$background_8c.html" title="Testing Program." alt="" coords="5,155,115,181"/>
+<area shape="rect" id="node6" href="$fonction_8c.html" title=" " alt="" coords="358,155,445,181"/>
+<area shape="rect" id="node7" href="$main_8c.html" title="Testing Program." alt="" coords="469,155,536,181"/>
+<area shape="rect" id="node8" href="$hero_8c.html" title=" " alt="" coords="485,80,547,107"/>
+<area shape="rect" id="node9" href="$mainheroc_8c.html" title=" " alt="" coords="571,80,674,107"/>
+<area shape="rect" id="node4" href="$entete_071_08_8h.html" title=" " alt="" coords="239,155,334,181"/>
+<area shape="rect" id="node5" href="$entete_8h.html" title=" " alt="" coords="139,155,215,181"/>
+</map>

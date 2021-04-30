@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Veneficus: Référence du fichier hero.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Veneficus
+   &#160;<span id="projectnumber">1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier hero.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="hero_8h_source.html">hero.h</a>&quot;</code><br />
+<code>#include &lt;SDL/SDL.h&gt;</code><br />
+<code>#include &lt;SDL/SDL_image.h&gt;</code><br />
+<code>#include &lt;SDL/SDL_mixer.h&gt;</code><br />
+<code>#include &lt;SDL/SDL_ttf.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de hero.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c__incl.png" border="0" usemap="#hero_8c" alt=""/></div>
+<map name="hero_8c" id="hero_8c">
+<area shape="rect" title=" " alt="" coords="390,5,453,32"/>
+<area shape="rect" href="hero_8h.html" title=" " alt="" coords="355,80,418,107"/>
+<area shape="rect" title=" " alt="" coords="5,155,72,181"/>
+<area shape="rect" title=" " alt="" coords="96,155,184,181"/>
+<area shape="rect" title=" " alt="" coords="208,155,344,181"/>
+<area shape="rect" title=" " alt="" coords="368,155,499,181"/>
+<area shape="rect" title=" " alt="" coords="523,155,632,181"/>
+<area shape="rect" title=" " alt="" coords="657,155,727,181"/>
+<area shape="rect" title=" " alt="" coords="751,155,819,181"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a96831fedb3a5a07b2e863ef3d6e2ee50"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#a96831fedb3a5a07b2e863ef3d6e2ee50">vitesse_max</a>&#160;&#160;&#160;40</td></tr>
+<tr class="separator:a96831fedb3a5a07b2e863ef3d6e2ee50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed9ea78689ecce0b7264c02c7f8a9a54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#aed9ea78689ecce0b7264c02c7f8a9a54">G</a>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:aed9ea78689ecce0b7264c02c7f8a9a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a0261729d24f1bfd872d94d26e105e106"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#a0261729d24f1bfd872d94d26e105e106">init</a> (<a class="el" href="structback.html">back</a> *b)</td></tr>
+<tr class="separator:a0261729d24f1bfd872d94d26e105e106"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5df8743076269c685245ad10e66d58df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#a5df8743076269c685245ad10e66d58df">aff</a> (<a class="el" href="structback.html">back</a> b, SDL_Surface *ecran)</td></tr>
+<tr class="separator:a5df8743076269c685245ad10e66d58df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee01e86fdb2b09207a3b5f2112524f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#a7ee01e86fdb2b09207a3b5f2112524f5">initPerso</a> (<a class="el" href="structperso.html">perso</a> *p)</td></tr>
+<tr class="separator:a7ee01e86fdb2b09207a3b5f2112524f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9639604a87bab946ddac88f96b116284"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#a9639604a87bab946ddac88f96b116284">afficherPerso</a> (<a class="el" href="structperso.html">perso</a> p, SDL_Surface *ecran, int ts, int v, <a class="el" href="structInput.html">Input</a> I)</td></tr>
+<tr class="separator:a9639604a87bab946ddac88f96b116284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a740a60299ea7837174fe9a2b1c7fbe03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#a740a60299ea7837174fe9a2b1c7fbe03">mouvementright</a> (<a class="el" href="structperso.html">perso</a> *p)</td></tr>
+<tr class="separator:a740a60299ea7837174fe9a2b1c7fbe03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43dbd8a30f85debe7437b2c5aad1ad3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#a43dbd8a30f85debe7437b2c5aad1ad3a">mouvementleft</a> (<a class="el" href="structperso.html">perso</a> *p)</td></tr>
+<tr class="separator:a43dbd8a30f85debe7437b2c5aad1ad3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4302ff9135390acd31855ced2c3c0029"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#a4302ff9135390acd31855ced2c3c0029">initialiser_input</a> (<a class="el" href="structInput.html">Input</a> *I)</td></tr>
+<tr class="separator:a4302ff9135390acd31855ced2c3c0029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af92448c856303ad098bcc7442af59fa7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#af92448c856303ad098bcc7442af59fa7">jumpin</a> (<a class="el" href="structperso.html">perso</a> *p, <a class="el" href="structInput.html">Input</a> *I)</td></tr>
+<tr class="separator:af92448c856303ad098bcc7442af59fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad619111a63b9bd276582963eff93c2ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#ad619111a63b9bd276582963eff93c2ae">gravity</a> (<a class="el" href="structperso.html">perso</a> *p, <a class="el" href="structInput.html">Input</a> *I)</td></tr>
+<tr class="separator:ad619111a63b9bd276582963eff93c2ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ae72f285bd44aae7d49bd98f8f2f786"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#a5ae72f285bd44aae7d49bd98f8f2f786">animerperso</a> (<a class="el" href="structperso.html">perso</a> *p, SDL_Surface *ecran, int v, <a class="el" href="structInput.html">Input</a> *I)</td></tr>
+<tr class="separator:a5ae72f285bd44aae7d49bd98f8f2f786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56e21dfb7bb9e390bcc4569753f20b83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hero_8c.html#a56e21dfb7bb9e390bcc4569753f20b83">freesurface</a> (<a class="el" href="structperso.html">perso</a> p, SDL_Surface *ecran)</td></tr>
+<tr class="separator:a56e21dfb7bb9e390bcc4569753f20b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des macros</h2>
+<a id="aed9ea78689ecce0b7264c02c7f8a9a54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed9ea78689ecce0b7264c02c7f8a9a54">&#9670;&nbsp;</a></span>G</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define G&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96831fedb3a5a07b2e863ef3d6e2ee50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96831fedb3a5a07b2e863ef3d6e2ee50">&#9670;&nbsp;</a></span>vitesse_max</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define vitesse_max&#160;&#160;&#160;40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a5df8743076269c685245ad10e66d58df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5df8743076269c685245ad10e66d58df">&#9670;&nbsp;</a></span>aff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void aff </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structback.html">back</a>&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Surface *&#160;</td>
+          <td class="paramname"><em>ecran</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_a5df8743076269c685245ad10e66d58df_icgraph.png" border="0" usemap="#hero_8c_a5df8743076269c685245ad10e66d58df_icgraph" alt=""/></div>
+<map name="hero_8c_a5df8743076269c685245ad10e66d58df_icgraph" id="hero_8c_a5df8743076269c685245ad10e66d58df_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,147,32"/>
+<area shape="rect" href="mainheroc_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9639604a87bab946ddac88f96b116284"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9639604a87bab946ddac88f96b116284">&#9670;&nbsp;</a></span>afficherPerso()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherPerso </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structperso.html">perso</a>&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Surface *&#160;</td>
+          <td class="paramname"><em>ecran</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structInput.html">Input</a>&#160;</td>
+          <td class="paramname"><em>I</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_a9639604a87bab946ddac88f96b116284_icgraph.png" border="0" usemap="#hero_8c_a9639604a87bab946ddac88f96b116284_icgraph" alt=""/></div>
+<map name="hero_8c_a9639604a87bab946ddac88f96b116284_icgraph" id="hero_8c_a9639604a87bab946ddac88f96b116284_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,215,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5ae72f285bd44aae7d49bd98f8f2f786"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ae72f285bd44aae7d49bd98f8f2f786">&#9670;&nbsp;</a></span>animerperso()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void animerperso </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structperso.html">perso</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Surface *&#160;</td>
+          <td class="paramname"><em>ecran</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structInput.html">Input</a> *&#160;</td>
+          <td class="paramname"><em>I</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_a5ae72f285bd44aae7d49bd98f8f2f786_icgraph.png" border="0" usemap="#hero_8c_a5ae72f285bd44aae7d49bd98f8f2f786_icgraph" alt=""/></div>
+<map name="hero_8c_a5ae72f285bd44aae7d49bd98f8f2f786_icgraph" id="hero_8c_a5ae72f285bd44aae7d49bd98f8f2f786_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,212,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a56e21dfb7bb9e390bcc4569753f20b83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56e21dfb7bb9e390bcc4569753f20b83">&#9670;&nbsp;</a></span>freesurface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freesurface </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structperso.html">perso</a>&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Surface *&#160;</td>
+          <td class="paramname"><em>ecran</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_a56e21dfb7bb9e390bcc4569753f20b83_icgraph.png" border="0" usemap="#hero_8c_a56e21dfb7bb9e390bcc4569753f20b83_icgraph" alt=""/></div>
+<map name="hero_8c_a56e21dfb7bb9e390bcc4569753f20b83_icgraph" id="hero_8c_a56e21dfb7bb9e390bcc4569753f20b83_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,204,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad619111a63b9bd276582963eff93c2ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad619111a63b9bd276582963eff93c2ae">&#9670;&nbsp;</a></span>gravity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gravity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structperso.html">perso</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structInput.html">Input</a> *&#160;</td>
+          <td class="paramname"><em>I</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_ad619111a63b9bd276582963eff93c2ae_icgraph.png" border="0" usemap="#hero_8c_ad619111a63b9bd276582963eff93c2ae_icgraph" alt=""/></div>
+<map name="hero_8c_ad619111a63b9bd276582963eff93c2ae_icgraph" id="hero_8c_ad619111a63b9bd276582963eff93c2ae_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,176,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0261729d24f1bfd872d94d26e105e106"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0261729d24f1bfd872d94d26e105e106">&#9670;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structback.html">back</a> *&#160;</td>
+          <td class="paramname"><em>b</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_a0261729d24f1bfd872d94d26e105e106_icgraph.png" border="0" usemap="#hero_8c_a0261729d24f1bfd872d94d26e105e106_icgraph" alt=""/></div>
+<map name="hero_8c_a0261729d24f1bfd872d94d26e105e106_icgraph" id="hero_8c_a0261729d24f1bfd872d94d26e105e106_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,151,32"/>
+<area shape="rect" href="mainheroc_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4302ff9135390acd31855ced2c3c0029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4302ff9135390acd31855ced2c3c0029">&#9670;&nbsp;</a></span>initialiser_input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialiser_input </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structInput.html">Input</a> *&#160;</td>
+          <td class="paramname"><em>I</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_a4302ff9135390acd31855ced2c3c0029_icgraph.png" border="0" usemap="#hero_8c_a4302ff9135390acd31855ced2c3c0029_icgraph" alt=""/></div>
+<map name="hero_8c_a4302ff9135390acd31855ced2c3c0029_icgraph" id="hero_8c_a4302ff9135390acd31855ced2c3c0029_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,231,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7ee01e86fdb2b09207a3b5f2112524f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ee01e86fdb2b09207a3b5f2112524f5">&#9670;&nbsp;</a></span>initPerso()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initPerso </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structperso.html">perso</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_a7ee01e86fdb2b09207a3b5f2112524f5_icgraph.png" border="0" usemap="#hero_8c_a7ee01e86fdb2b09207a3b5f2112524f5_icgraph" alt=""/></div>
+<map name="hero_8c_a7ee01e86fdb2b09207a3b5f2112524f5_icgraph" id="hero_8c_a7ee01e86fdb2b09207a3b5f2112524f5_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,187,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af92448c856303ad098bcc7442af59fa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af92448c856303ad098bcc7442af59fa7">&#9670;&nbsp;</a></span>jumpin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jumpin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structperso.html">perso</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structInput.html">Input</a> *&#160;</td>
+          <td class="paramname"><em>I</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_af92448c856303ad098bcc7442af59fa7_icgraph.png" border="0" usemap="#hero_8c_af92448c856303ad098bcc7442af59fa7_icgraph" alt=""/></div>
+<map name="hero_8c_af92448c856303ad098bcc7442af59fa7_icgraph" id="hero_8c_af92448c856303ad098bcc7442af59fa7_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,175,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a43dbd8a30f85debe7437b2c5aad1ad3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43dbd8a30f85debe7437b2c5aad1ad3a">&#9670;&nbsp;</a></span>mouvementleft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mouvementleft </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structperso.html">perso</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_a43dbd8a30f85debe7437b2c5aad1ad3a_icgraph.png" border="0" usemap="#hero_8c_a43dbd8a30f85debe7437b2c5aad1ad3a_icgraph" alt=""/></div>
+<map name="hero_8c_a43dbd8a30f85debe7437b2c5aad1ad3a_icgraph" id="hero_8c_a43dbd8a30f85debe7437b2c5aad1ad3a_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,231,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a740a60299ea7837174fe9a2b1c7fbe03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a740a60299ea7837174fe9a2b1c7fbe03">&#9670;&nbsp;</a></span>mouvementright()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mouvementright </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structperso.html">perso</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="hero_8c_a740a60299ea7837174fe9a2b1c7fbe03_icgraph.png" border="0" usemap="#hero_8c_a740a60299ea7837174fe9a2b1c7fbe03_icgraph" alt=""/></div>
+<map name="hero_8c_a740a60299ea7837174fe9a2b1c7fbe03_icgraph" id="hero_8c_a740a60299ea7837174fe9a2b1c7fbe03_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,239,32"/>
+<area shape="rect" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>
