@@ -17,7 +17,9 @@ typedef struct
 {int jumpspeed;
 int jumpheight;
 int gravity;
-
+/*SDL_Rect posgagnant;
+ SDL_Surface *victory;
+    SDL_Surface *defeat;*/
     int X;
     int Y;
     int Y2; 
@@ -91,7 +93,10 @@ void freesurface(perso p, SDL_Surface *ecran);
 
 
 typedef struct
-{
+{    
+
+
+
   SDL_Surface *imgnewgame;
   SDL_Surface *imgloadgame;
   SDL_Surface *imgmultijoueur;
@@ -163,5 +168,7 @@ void animation(menu m);
 void affichagemenuanim (menu m, SDL_Surface *ecran,int *continuer);
 void initanim(SDL_Surface *imgbackground[]);
 void motion(int *page,int *continuer, menu m);
+void afficherdefeat(perso p, SDL_Surface *ecran, int ts, int v, Input I, int multijoueur);
+void affichervictory(perso p, SDL_Surface *ecran, int ts, int v, Input I, int multijoueur);
 
 #endif

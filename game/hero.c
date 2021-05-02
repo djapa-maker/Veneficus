@@ -128,6 +128,15 @@ void initPerso(perso *p)
         sprintf(char3, "vie%d.png", t);
         p->tabvie[t] = IMG_Load(char3);
     }
+   /* //victory
+    p->victory = IMG_Load("victory.png");
+    p->posgagnant.x = 20;
+    p->posgagnant.y = 20;
+
+    //defeat
+    p->defeat = IMG_Load("defeat.png");
+    p->posgagnant.x = 20;
+    p->posgagnant.y = 20;*/
 }
 void initPerso2(perso *p)
 {
@@ -183,7 +192,7 @@ void initPerso2(perso *p)
     }
 
     for (t = 1; t < p->num2; t++)
-    {        
+    {
 
         sprintf(char2, "2%dm.png", t);
         p->tab2[t] = IMG_Load(char2);
@@ -200,13 +209,13 @@ void initPerso2(perso *p)
     }
     for (t = 1; t < p->num5; t++)
     {
-        
+
         sprintf(char6, "5%dm.png", t);
         p->tab5[t] = IMG_Load(char6);
     }
     for (t = 1; t < p->num6; t++)
     {
-        
+
         sprintf(char7, "6%dm.png", t);
         p->tab6[t] = IMG_Load(char7);
     }
@@ -223,11 +232,11 @@ void initPerso2(perso *p)
 
     for (t = 1; t < p->numvie; t++)
     {
-        sprintf(char3, "vie%d.png", t);
+        sprintf(char3, "vie%dm.png", t);
         p->tabvie[t] = IMG_Load(char3);
     }
 }
-void afficherPerso(perso p, SDL_Surface *ecran, int ts, int v, Input I,int multijoueur)
+void afficherPerso(perso p, SDL_Surface *ecran, int ts, int v, Input I, int multijoueur)
 {
 
     char char1[100], char2[100], char5[100], char3[100], char4[100];
@@ -272,10 +281,11 @@ void afficherPerso(perso p, SDL_Surface *ecran, int ts, int v, Input I,int multi
         SDL_BlitSurface(p.tab5[p.frame4], NULL, ecran, &p.poshero);
     }
     else if ((p.direction == 1) && (I.fight == 1)) //frapper1
-    {          if (multijoueur==1)                                    //SDL_Delay(200);
-        p.poshero.x -= 50;
-else
-        p.poshero.x -= 105;
+    {
+        if (multijoueur == 1) //SDL_Delay(200);
+            p.poshero.x -= 50;
+        else
+            p.poshero.x -= 105;
 
         SDL_BlitSurface(p.tab6[p.frame5], NULL, ecran, &p.poshero);
         SDL_Delay(100);
@@ -298,33 +308,37 @@ else
     /*score*/
     TTF_Font *police = NULL;
     SDL_Color couleurnoire = {0, 0, 0};
-    police = TTF_OpenFont("texxte.ttf", 90);
-    if (0<ts < 10)
+    if (multijoueur == 0)
+        police = TTF_OpenFont("texxte.ttf", 90);
+    else if (multijoueur == 1)
+        police = TTF_OpenFont("texxte.ttf", 40);
+    if (0 < ts < 10)
     {
         sprintf(char1, "%d", ts);
         p.imgscore = TTF_RenderText_Blended(police, char1, couleurnoire);
         SDL_BlitSurface(p.imgscore, NULL, ecran, &p.posimgscore);
     }
-    else if (10<ts < 100)
+    else if (10 < ts < 100)
     {
         sprintf(char2, "%d", ts);
         p.imgscore = TTF_RenderText_Blended(police, char2, couleurnoire);
         SDL_BlitSurface(p.imgscore, NULL, ecran, &p.posimgscore);
     }
-    else if (100<ts < 1000)
+    else if (100 < ts < 1000)
     {
         sprintf(char3, "%d", ts);
         p.imgscore = TTF_RenderText_Blended(police, char3, couleurnoire);
         SDL_BlitSurface(p.imgscore, NULL, ecran, &p.posimgscore);
     }
-    else if (1000<ts < 10000)
+    else if (1000 < ts < 10000)
     {
         sprintf(char4, "%d", ts);
         p.imgscore = TTF_RenderText_Blended(police, char4, couleurnoire);
         SDL_BlitSurface(p.imgscore, NULL, ecran, &p.posimgscore);
     }
-     else if (ts <-1)
-    {printf("si\n");
+    else if (ts < -1)
+    {
+        printf("si\n");
         sprintf(char5, "0%d", ts);
         p.imgscore = TTF_RenderText_Blended(police, char5, couleurnoire);
         SDL_BlitSurface(p.imgscore, NULL, ecran, &p.posimgscore);
@@ -362,8 +376,6 @@ void initialiser_input(Input *I)
     I->right = 0;
     I->fight = 0;
 }
-
-
 
 void animerperso(perso *p, SDL_Surface *ecran, int v, Input *I)
 {
@@ -457,3 +469,12 @@ void freesurface(perso p, SDL_Surface *ecran)
 
     SDL_FreeSurface(ecran);
 }
+
+/*void affichervictory(perso p, SDL_Surface *ecran, int ts, int v, Input I, int multijoueur)
+{
+    SDL_BlitSurface(p.victory, NULL, ecran, &p.posgagnant);
+}
+void afficherdefeat(perso p, SDL_Surface *ecran, int ts, int v, Input I, int multijoueur)
+{
+    SDL_BlitSurface(p.defeat, NULL, ecran, &p.posgagnant);
+}*/

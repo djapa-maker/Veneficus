@@ -28,21 +28,21 @@ int main(int argc, char *argv[])
   Background b1;
   Background b2;
   perso p, p1, p2;
-  int v = 1, ts = 0;
+  int v = 1, ts = 0, ts1 = 0, ts2 = 0;
   int v1 = 1, v2 = 1;
-  int y=0;
+  int y = 0;
   Uint32 start;
   Input I, I1, I2;
   int dt;
   Uint32 t_prev;
   minimap m;
-  int loadd=0;
+  int loadd = 0;
   int multijoueur = 0;
   int temps = 60;
-  int f,k,n,interface=0,ym=0,z;
+  int f, k, n, interface = 0, ym = 0, z;
   int page = 0;  // 1:6 c'est le jeu  de stage 1->6, 7 enigme 1, 8 enigme 2, 9 enigme 3 , 0 menu principale
   int input = 0; //1 fleche right, 2 fleche left
- menu men;
+  menu men;
   enigme enig; //tout ce qui concerne enigme statique//
   int reponsevraie = 0;
 
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 
   enigmealf ealf;
   int r = 3;            // 1 si resolu , 0 si non resolu
-  int ye = 0;            // pos of mouse , 1 on yms ,  or 2 on no or  0 none
+  int ye = 0;           // pos of mouse , 1 on yms ,  or 2 on no or  0 none
   int enigmealfalf = 0; // 1 si enigmealf commence 0 si il  n y a pas dengime
 
   /*--------------------initialisation SDL*********/
@@ -75,19 +75,19 @@ int main(int argc, char *argv[])
   }
   SDL_EnableKeyRepeat(100, 100);
   /*******initialisation des erntités*************/
-    initBack(&b);
-    initBack(&b1);
-    b1.imgBack1 = IMG_Load("ice_level_multijoueur.png");
-    b1.scroll.y = 0;
-    b1.scroll.h = 393;
-    b1.imageM = IMG_Load("bgmasquemultijoueur.jpg");
-    initBack(&b2);
-    b2.imgBack1 = IMG_Load("ice_level_multijoueur.png");
-    b2.scroll.y = 0;
-    b2.scroll.h = 393;
-    b2.imageM = IMG_Load("bgmasquemultijoueur.jpg");
-  
-    initialiser_input(&I);
+  initBack(&b);
+  initBack(&b1);
+  b1.imgBack1 = IMG_Load("ice_level_multijoueur.png");
+  b1.scroll.y = 0;
+  b1.scroll.h = 393;
+  b1.imageM = IMG_Load("bgmasquemultijoueur.jpg");
+  initBack(&b2);
+  b2.imgBack1 = IMG_Load("ice_level_multijoueur.png");
+  b2.scroll.y = 0;
+  b2.scroll.h = 393;
+  b2.imageM = IMG_Load("bgmasquemultijoueur.jpg");
+
+  initialiser_input(&I);
   initPerso(&p);
   initmap(&m);
   I.jump = 0;
@@ -102,9 +102,7 @@ int main(int argc, char *argv[])
   //*********INIT enigme al avec fichier***********
   initialiser_enigmealf(&ealf);
   genererenigmealf(&ealf);
-  
- 
-  
+
   initPerso2(&p1);
   initPerso2(&p2);
   p1.poshero.y = 230;
@@ -113,15 +111,44 @@ int main(int argc, char *argv[])
   I1.fall = 1;
   I2.jump = 0;
   I2.fall = 1;
-  
-  
+
   intialiser(&men);
-  
+
   /**********boucle du jeu*******************/
   while (continuer)
   {
     start = SDL_GetTicks();
     input = 0;
+
+    //init victory defeat//
+    SDL_Surface *victory;
+    SDL_Surface *defeat;
+    SDL_Rect posvictory;
+    SDL_Rect posdefeat;
+    posvictory.x = 300;
+    posvictory.y = 5;
+    posdefeat.y = 5;
+    posdefeat.x = 300;
+    victory = IMG_Load("victory.png");
+    defeat = IMG_Load("defeat.png");
+
+    SDL_Surface *victory2;
+    SDL_Surface *defeat2;
+    SDL_Rect posvictory2;
+    SDL_Rect posdefeat2;
+    SDL_Rect posvictory3;
+    SDL_Rect posdefeat3;
+    posvictory2.x = 500;
+    posvictory2.y = 20;
+    posdefeat2.y = 20;
+    posdefeat2.x = 500;
+
+    posvictory3.x = 400;
+    posvictory3.y = 470;
+    posdefeat3.y = 400;
+    posdefeat3.x = 500;
+    victory2 = IMG_Load("victorymultijoueur.png");
+    defeat2 = IMG_Load("defeatmultijoueur.png");
     /******* Module d'affichage****/
     if (page == 1)
     {
@@ -130,23 +157,76 @@ int main(int argc, char *argv[])
         afficherBack(b, ecran);
         afficherminimap(m, ecran);
         affichertemps(temps, ecran);
-        afficherPerso(p, ecran, ts, v, I,multijoueur);
+        afficherPerso(p, ecran, ts, v, I, multijoueur);
+        if ((p.poshero.x >= 1210) && (p.poshero.x <= 1350) && (v != 7) && (temps != 0))
+        {
+          if (ts >0)
+          {  SDL_BlitSurface(victory, NULL, ecran, &posvictory);}
+          else if (ts<=0)
+            {SDL_BlitSurface(defeat, NULL, ecran, &posdefeat);}
+        }
+        else if ((v == 7) || (temps == 0))
+        {
+          SDL_BlitSurface(defeat, NULL, ecran, &posdefeat);}
       }
 
       else if (multijoueur == 1)
       {
         afficherBack(b1, ecran);
         afficherBack1(b2, ecran);
-       // afficherminimap(m, ecran);
+        // afficherminimap(m, ecran);
         affichertemps(temps, ecran);
-        afficherPerso(p1, ecran, ts, v1, I1,multijoueur);
-        afficherPerso(p2, ecran, ts, v2, I2,multijoueur);
+        afficherPerso(p1, ecran, ts1, v1, I1, multijoueur);
+        p2.posimgscore.y = 440;
+        p1.posimgscore.y = 50;
+        p1.posimgvie.x = 1250;
+        p2.posimgvie.x = 1250;
+        p2.posimgscore.x = 1330;
+        p1.posimgscore.x = 1330;
+        p2.posimgvie.y = 400;
+        afficherPerso(p2, ecran, ts2, v2, I2, multijoueur);
+        if ((p1.poshero.x >= 1210) && (p1.poshero.x <= 1350) && (p2.poshero.x >= 1210) && (p2.poshero.x <= 1350) && (v1 != 7) && (v2 != 7) && (temps != 0))
+        {
+          {
+            if (ts1 > ts2)
+            {
+              SDL_BlitSurface(victory2, NULL, ecran, &posvictory2);
+              SDL_BlitSurface(defeat2, NULL, ecran, &posdefeat3);
+            }
+            else if (ts1 > ts2)
+            {
+              SDL_BlitSurface(victory2, NULL, ecran, &posvictory3);
+              SDL_BlitSurface(defeat2, NULL, ecran, &posdefeat2);
+            }
+          }
+        }
+        else if ((v1 == 7) && (temps != 0) && (v2 != 7))
+        {
+          
+          SDL_BlitSurface(victory2, NULL, ecran, &posvictory3);
+          SDL_BlitSurface(defeat2, NULL, ecran, &posdefeat2);
+        }
+        else if ((v2 == 7) && (temps != 0) && (v1 != 7))
+        {
+          SDL_BlitSurface(victory2, NULL, ecran, &posvictory2);
+          SDL_BlitSurface(defeat2, NULL, ecran, &posdefeat3);
+        }
+        else if ((temps == 0) && (v1 != 7) && (v2 != 7) && (p1.poshero.x == 1200) && (p2.poshero.x != 1200))
+        {
+          SDL_BlitSurface(victory2, NULL, ecran, &posvictory2);
+          SDL_BlitSurface(defeat2, NULL, ecran, &posdefeat3);
+        }
+        else if ((temps == 0) && (v1 != 7) && (v2 != 7) && (p2.poshero.x == 1200) && (p1.poshero.x != 1200))
+        {
+          SDL_BlitSurface(victory2, NULL, ecran, &posvictory3);
+          SDL_BlitSurface(defeat2, NULL, ecran, &posdefeat2);
+        }
       }
     }
-    else if(page==0)
+    else if (page == 0)
     {
-      affichagemenuanim (men,ecran,&continuer);
-       affichage(interface,y,f,k, men,ecran,n);
+      affichagemenuanim(men, ecran, &continuer);
+      affichage(interface, y, f, k, men, ecran, n);
     }
     // udpate
 
@@ -221,420 +301,417 @@ int main(int argc, char *argv[])
     }
 
     /****** Module input****/
-    
+
     while (SDL_PollEvent(&event))
     {
-      if(page==0)
+      if (page == 0)
       {
-       switch (event.type)
-      {
-      case SDL_QUIT:
-        continuer = 0;
-        break;
-
-      case SDL_MOUSEMOTION:
-        men.poscurseur.x = event.motion.x;
-        men.poscurseur.y = event.motion.y;
-        //printf("largeur:%d \n",m.poscurseur.x);
-        //printf("hauteur:%d \n",m.poscurseur.y);
-        if (interface == 0)
-        { //curseur dans les intervals des images play/options/quit//
-          if ((event.motion.x <= 428 && event.motion.x >= 100) && (event.motion.y <= 479 && event.motion.y >= 370))
-          {
-            y = 1;
-          }
-          else if ((event.motion.x < 429 && event.motion.x >= 100) && (event.motion.y <= 586 && event.motion.y > 500))
-          {
-           
-            y = 2;
-          }
-          else if ((event.motion.x <= 450 && event.motion.x >= 90) && (event.motion.y <= 680 && event.motion.y >= 600))
-          {
-       
-            y = 3;
-          }
-          else
-            y = 0;
-        }
-
-        else if (interface == 1)
+        switch (event.type)
         {
-          y=0;
-          //curseur dans interval de la barre du  son//
-          if ((event.motion.x <= 260 && event.motion.x >= 100) && (event.motion.y <= 420 && event.motion.y >= 380))
-          {
-      
-            y = 1;
-            z = 0;
-            
-          }
-          else if ((event.motion.x < 420 && event.motion.x >= 260) && (event.motion.y <= 420 && event.motion.y > 380))
-          {
-         
-            y = 1;
-            z = 1;
-          }
-          else if ((event.motion.x <= 580 && event.motion.x >= 420) && (event.motion.y <= 420 && event.motion.y >= 380))
-          {
-    
-            y = 1;
-            z = 2;
-          }
-          if ((event.motion.x <= 740 && event.motion.x >= 580) && (event.motion.y <= 420 && event.motion.y >= 380))
-          {
-       
-            y = 1;
-            z = 3;
-          }
-          else if ((event.motion.x < 860 && event.motion.x >= 740) && (event.motion.y < 420 && event.motion.y > 380))
-          {
-     
-            y = 1;
-            z = 4;
-          }
+        case SDL_QUIT:
+          continuer = 0;
+          break;
 
-          //curseur dans interval des images "fullscreen"/"fenetre"//
-          else if ((event.motion.x <= 415 && event.motion.x >= 94) && (event.motion.y <= 687 && event.motion.y >= 613))
-          {
-            y = 2;
-            f = 0;
-          }
-          else if ((event.motion.x < 804 && event.motion.x >= 471) && (event.motion.y <= 687 && event.motion.y > 613))
-          {
-            y = 2;
-            f = 1;
-            
-          }
-        }
-        
-        else if (interface == 2)
-        { 
-          if ((event.motion.x <= 428 && event.motion.x >= 100) && (event.motion.y <= 479 && event.motion.y >= 370))
-          {
-      
-            y = 1;
-          }
-          else if ((event.motion.x < 429 && event.motion.x >= 100) && (event.motion.y <= 586 && event.motion.y > 500))
-          {
-         // printf("boutton option");
-            y = 2;
-          }
-          else if ((event.motion.x <= 450 && event.motion.x >= 90) && (event.motion.y <= 680 && event.motion.y >= 600))
-          {
-       //quit
-            y = 3;
-          }
-          else
-            y = 0;
-        }
-        break;
-
-     //comportement du bouton 
-      case SDL_MOUSEBUTTONDOWN:
-        switch (event.button.button)
-        {
-        case SDL_BUTTON_LEFT:
-          //Mix_PlayChannel(-1, son, 0);
+        case SDL_MOUSEMOTION:
+          men.poscurseur.x = event.motion.x;
+          men.poscurseur.y = event.motion.y;
+          //printf("largeur:%d \n",m.poscurseur.x);
+          //printf("hauteur:%d \n",m.poscurseur.y);
           if (interface == 0)
-          {
-            if (y == 1)
-              interface = 2;
-            else if (y == 2)
+          { //curseur dans les intervals des images play/options/quit//
+            if ((event.motion.x <= 428 && event.motion.x >= 100) && (event.motion.y <= 479 && event.motion.y >= 370))
             {
-              interface = 1;
               y = 1;
             }
-            else if (y == 3)
-              continuer = 0;
+            else if ((event.motion.x < 429 && event.motion.x >= 100) && (event.motion.y <= 586 && event.motion.y > 500))
+            {
+
+              y = 2;
+            }
+            else if ((event.motion.x <= 450 && event.motion.x >= 90) && (event.motion.y <= 680 && event.motion.y >= 600))
+            {
+
+              y = 3;
+            }
+            else
+              y = 0;
           }
+
           else if (interface == 1)
           {
-            if (z == 0)
+            y = 0;
+            //curseur dans interval de la barre du  son//
+            if ((event.motion.x <= 260 && event.motion.x >= 100) && (event.motion.y <= 420 && event.motion.y >= 380))
             {
-              k = 0;
+
               y = 1;
+              z = 0;
             }
-            else if (z == 1)
+            else if ((event.motion.x < 420 && event.motion.x >= 260) && (event.motion.y <= 420 && event.motion.y > 380))
             {
-              k = 1;
+
               y = 1;
+              z = 1;
             }
-            else if (z == 2)
+            else if ((event.motion.x <= 580 && event.motion.x >= 420) && (event.motion.y <= 420 && event.motion.y >= 380))
             {
-              k = 2;
+
               y = 1;
+              z = 2;
             }
-            else if (z == 3)
+            if ((event.motion.x <= 740 && event.motion.x >= 580) && (event.motion.y <= 420 && event.motion.y >= 380))
             {
-              k = 3;
+
               y = 1;
+              z = 3;
             }
-            else if (z == 4)
+            else if ((event.motion.x < 860 && event.motion.x >= 740) && (event.motion.y < 420 && event.motion.y > 380))
             {
-              k = 4;
+
               y = 1;
+              z = 4;
             }
 
-            else if (y == 2)
-              switch (f)
-              {
-              case 0:
-                n = 1;
-                break;
-              case 1:
-                n = 2;
-                break;
-              }
-          }
-          
-          else if(interface==2) //new game
-          {printf("la page est : %d ",page);
-            if (y == 1)
+            //curseur dans interval des images "fullscreen"/"fenetre"//
+            else if ((event.motion.x <= 415 && event.motion.x >= 94) && (event.motion.y <= 687 && event.motion.y >= 613))
             {
-              multijoueur=0;
-              page=1;
-              
-            } 
+              y = 2;
+              f = 0;
+            }
+            else if ((event.motion.x < 804 && event.motion.x >= 471) && (event.motion.y <= 687 && event.motion.y > 613))
+            {
+              y = 2;
+              f = 1;
+            }
+          }
+
+          else if (interface == 2)
+          {
+            if ((event.motion.x <= 428 && event.motion.x >= 100) && (event.motion.y <= 479 && event.motion.y >= 370))
+            {
+
+              y = 1;
+            }
+            else if ((event.motion.x < 429 && event.motion.x >= 100) && (event.motion.y <= 586 && event.motion.y > 500))
+            {
+              // printf("boutton option");
+              y = 2;
+            }
+            else if ((event.motion.x <= 450 && event.motion.x >= 90) && (event.motion.y <= 680 && event.motion.y >= 600))
+            {
+              //quit
+              y = 3;
+            }
+            else
+              y = 0;
+          }
+          break;
+
+          //comportement du bouton
+        case SDL_MOUSEBUTTONDOWN:
+          switch (event.button.button)
+          {
+          case SDL_BUTTON_LEFT:
+            //Mix_PlayChannel(-1, son, 0);
+            if (interface == 0)
+            {
+              if (y == 1)
+                interface = 2;
               else if (y == 2)
               {
-                multijoueur=0;
-              page=1;
-               load(&p,&b,&m,&ts,&v);
+                interface = 1;
+                y = 1;
+              }
+              else if (y == 3)
+                continuer = 0;
+            }
+            else if (interface == 1)
+            {
+              if (z == 0)
+              {
+                k = 0;
+                y = 1;
+              }
+              else if (z == 1)
+              {
+                k = 1;
+                y = 1;
+              }
+              else if (z == 2)
+              {
+                k = 2;
+                y = 1;
+              }
+              else if (z == 3)
+              {
+                k = 3;
+                y = 1;
+              }
+              else if (z == 4)
+              {
+                k = 4;
+                y = 1;
+              }
+
+              else if (y == 2)
+                switch (f)
+                {
+                case 0:
+                  n = 1;
+                  break;
+                case 1:
+                  n = 2;
+                  break;
+                }
+            }
+
+            else if (interface == 2) //new game
+            {
+              printf("la page est : %d ", page);
+              if (y == 1)
+              {
+                multijoueur = 0;
+                page = 1;
+              }
+              else if (y == 2)
+              {
+                multijoueur = 0;
+                page = 1;
+                load(&p, &b, &m, &ts, &v);
               }
               else if (y == 3)
               {
-                multijoueur=1;
+                multijoueur = 1;
                 printf("mode multijoueur\n");
-             page=1;
-             
+                page = 1;
               }
+            }
           }
-        }
-        break;
-
-      case SDL_KEYDOWN:
-        switch (event.key.keysym.sym)
-        {
-        case SDLK_ESCAPE:
-          if (interface == 0)
-          {
-            continuer = 0;
-          }
-          else if (interface == 1)
-            interface = 0;
-          else if (interface == 2)
-            interface = 0;
           break;
 
-        case SDLK_RETURN:
-
-          if (interface == 0)
+        case SDL_KEYDOWN:
+          switch (event.key.keysym.sym)
           {
-            if (y == 1)
-              interface = 2;
-            else if (y == 2)
+          case SDLK_ESCAPE:
+            if (interface == 0)
             {
-              interface = 1;
-              y = 1;
-            }
-            else if (y == 3)
               continuer = 0;
-          }
-          else if (interface == 1)
-          {
-            if (y == 2)
-              switch (f)
+            }
+            else if (interface == 1)
+              interface = 0;
+            else if (interface == 2)
+              interface = 0;
+            break;
+
+          case SDLK_RETURN:
+
+            if (interface == 0)
+            {
+              if (y == 1)
+                interface = 2;
+              else if (y == 2)
               {
-              case 0:
-                n = 1;
-                break;
-              case 1:
-                n = 2;
+                interface = 1;
+                y = 1;
+              }
+              else if (y == 3)
+                continuer = 0;
+            }
+            else if (interface == 1)
+            {
+              if (y == 2)
+                switch (f)
+                {
+                case 0:
+                  n = 1;
+                  break;
+                case 1:
+                  n = 2;
+                  break;
+                }
+            }
+            else if (interface == 2)
+            {
+              if (y == 1)
+                page = 1;
+              else if (y == 2)
+                page = 2;
+              else if (y == 3)
+                page = 3;
+            }
+            break;
+          case SDLK_UP:
+            if (y == 0)
+            {
+              y = 3;
+              break;
+            }
+            if (y == 3)
+            {
+              y = 2;
+              break;
+            }
+            if (y == 2)
+            {
+              y = 1;
+              break;
+            }
+            if (y == 1)
+            {
+              y = 3;
+              break;
+            }
+          case SDLK_DOWN:
+            if (y == 0)
+            {
+              y = 1;
+              break;
+            }
+            if (y == 1)
+            {
+              y = 2;
+              break;
+            }
+            if (y == 2)
+            {
+              y = 3;
+              break;
+            }
+            if (y == 3)
+            {
+              y = 1;
+              break;
+            }
+          case SDLK_RIGHT:
+            if (y == 1)
+            {
+              if (k == 0)
+              {
+                k = 1;
                 break;
               }
-          }
-          else if (interface == 2)
-          {
+              if (k == 1)
+              {
+                k = 2;
+                break;
+              }
+              if (k == 2)
+              {
+                k = 3;
+                break;
+              }
+              if (k == 3)
+              {
+                k = 4;
+                break;
+              }
+              if (k == 4)
+              {
+                k = 4;
+                break;
+              }
+            }
+
+            if (f == 0)
+            {
+              f = 1;
+              break;
+            }
+            if (f == 1)
+            {
+              f = 1;
+              break;
+            }
+
+          case SDLK_LEFT:
             if (y == 1)
-              page=1;
-              else if (y == 2)
-              page=2;
-              else if (y == 3)
-              page=3;
-          }
-          break;
-        case SDLK_UP:
-          if (y == 0)
-          {
-            y = 3;
-            break;
-          }
-          if (y == 3)
-          {
-            y = 2;
-            break;
-          }
-          if (y == 2)
-          {
-            y = 1;
-            break;
-          }
-          if (y == 1)
-          {
-            y = 3;
-            break;
-          }
-        case SDLK_DOWN:
-          if (y == 0)
-          {
-            y = 1;
-            break;
-          }
-          if (y == 1)
-          {
-            y = 2;
-            break;
-          }
-          if (y == 2)
-          {
-            y = 3;
-            break;
-          }
-          if (y == 3)
-          {
-            y = 1;
-            break;
-          }
-        case SDLK_RIGHT:
-          if (y == 1)
-          {
-            if (k == 0)
             {
-              k = 1;
+              if (k == 4)
+              {
+                k = 3;
+                break;
+              }
+              if (k == 3)
+              {
+                k = 2;
+                break;
+              }
+              if (k == 2)
+              {
+                k = 1;
+                break;
+              }
+              if (k == 1)
+              {
+                k = 0;
+                break;
+              }
+              if (k == 0)
+              {
+                k = 0;
+                break;
+              }
+            }
+            if (f == 0)
+            {
+              f = 0;
               break;
             }
-            if (k == 1)
+            if (f == 1)
             {
-              k = 2;
+              f = 0;
               break;
             }
-            if (k == 2)
-            {
-              k = 3;
-              break;
-            }
-            if (k == 3)
-            {
-              k = 4;
-              break;
-            }
-            if (k == 4)
-            {
-              k = 4;
-              break;
-            }
-          }
-
-          if (f == 0)
-          {
-            f = 1;
-            break;
-          }
-          if (f == 1)
-          {
-            f = 1;
-            break;
-          }
-
-        case SDLK_LEFT:
-          if (y == 1)
-          {
-            if (k == 4)
-            {
-              k = 3;
-              break;
-            }
-            if (k == 3)
-            {
-              k = 2;
-              break;
-            }
-            if (k == 2)
-            {
-              k = 1;
-              break;
-            }
-            if (k == 1)
-            {
-              k = 0;
-              break;
-            }
-            if (k == 0)
-            {
-              k = 0;
-              break;
-            }
-          }
-          if (f == 0)
-          {
-            f = 0;
-            break;
-          }
-          if (f == 1)
-          {
-            f = 0;
-            break;
-          }
-          ///fermuture if(n==2)//
-        } //fermuture switch(key event)//
-      } 
+            ///fermuture if(n==2)//
+          } //fermuture switch(key event)//
+        }
       }
       if (page == 1)
       {
         //printf("ordonneé de hero %d",p.poshero.y);
         //printf("ordonneé de cam %d",b.scroll.y);
         initialiser_input(&I);
-      initialiser_input(&I1);
-      initialiser_input(&I2);
+        initialiser_input(&I1);
+        initialiser_input(&I2);
 
-      switch (event.type)
-      {
-      case SDL_QUIT:
-        continuer = 0;
-        break;
-      case SDL_KEYDOWN:
-        switch (event.key.keysym.sym)
+        switch (event.type)
         {
+        case SDL_QUIT:
+          continuer = 0;
+          break;
+        case SDL_KEYDOWN:
+          switch (event.key.keysym.sym)
+          {
           case SDLK_s:
-          save(p,b,m,ts,v);
-          break;
-        case SDLK_RIGHT:
-          if ((v != 7))
-          {
-            I.right = 1;
-            p.direction = 0;
-          }
-          if ((v1 != 7)&&(multijoueur==1))
-          {
-            I1.right = 1;
-            p1.direction = 0;
-          }
+            save(p, b, m, ts, v);
+            break;
+          case SDLK_RIGHT:
+            if ((v != 7))
+            {
+              I.right = 1;
+              p.direction = 0;
+            }
+            if ((v1 != 7) && (multijoueur == 1))
+            {
+              I1.right = 1;
+              p1.direction = 0;
+            }
 
-          break;
-        case SDLK_LEFT:
-          if ((v != 7))
-          {
-            I.left = 1;
-            p.direction = 1;
-          }
-          if ((v1 != 7)&&(multijoueur==1))
-          {
-            I1.left = 1;
-            p1.direction = 1;
-          }
-          break;
-        case SDLK_UP:
-          /*if (p.poshero.y <= 400 && p.poshero.y >= ((ecran->h) / 2) || (b.scroll.y == 0 && p.poshero.y <= 400))
+            break;
+          case SDLK_LEFT:
+            if ((v != 7))
+            {
+              I.left = 1;
+              p.direction = 1;
+            }
+            if ((v1 != 7) && (multijoueur == 1))
+            {
+              I1.left = 1;
+              p1.direction = 1;
+            }
+            break;
+          case SDLK_UP:
+            /*if (p.poshero.y <= 400 && p.poshero.y >= ((ecran->h) / 2) || (b.scroll.y == 0 && p.poshero.y <= 400))
           {
             printf("poshero %d", p.poshero.y);
             printf("pos cam %d", b.scroll.y);
@@ -643,61 +720,61 @@ int main(int argc, char *argv[])
 
             if (p.poshero.y <= 30)
               p.poshero.y = 30;*/
-          // }
-        
-          if ((v != 7))
-          {
-            
-            /*if (/*p.poshero.y <= 120 && p.poshero.y <= ((ecran->h) / 2) || */ /*p.poshero.y >= 287)*/
-            //{ 
-            I.jump = 1;
-            //} 
-          /*else if (p.poshero.y <= 287)
+            // }
+
+            if ((v != 7))
+            {
+
+              /*if (/*p.poshero.y <= 120 && p.poshero.y <= ((ecran->h) / 2) || */ /*p.poshero.y >= 287)*/
+              //{
+              I.jump = 1;
+              //}
+              /*else if (p.poshero.y <= 287)
           {*/
-            //printf("  ---------------");
-            //printf("poshero %d", p.poshero.y);
-            //printf("pos cam %d", b.scroll.y);
-            /*I.jump = 1;
-            p.direction=2; */  
-            /*scrollingBack(&b, p, I);
+              //printf("  ---------------");
+              //printf("poshero %d", p.poshero.y);
+              //printf("pos cam %d", b.scroll.y);
+              /*I.jump = 1;
+            p.direction=2; */
+              /*scrollingBack(&b, p, I);
           }*/
-          }
-          if ((v1 != 7)&&(multijoueur==1))
-          {
-            I1.jump = 1;
-            printf("  input jump=%d\n", I1.jump);
-          }
-          break;
-        case SDLK_SPACE:
-          if (v != 7)
-          {
-            I.fight = 1;
-            printf("frapper1\n");
-          }
-          if ((v2 != 7)&&(multijoueur==1))
-          {
-            I1.fight = 1;
-            printf("frapper1\n");
-          }
-          break;
+            }
+            if ((v1 != 7) && (multijoueur == 1))
+            {
+              I1.jump = 1;
+              printf("  input jump=%d\n", I1.jump);
+            }
+            break;
+          case SDLK_SPACE:
+            if (v != 7)
+            {
+              I.fight = 1;
+              printf("frapper1\n");
+            }
+            if ((v2 != 7) && (multijoueur == 1))
+            {
+              I1.fight = 1;
+              printf("frapper1\n");
+            }
+            break;
 
-        case SDLK_d:
-          if ((v2 != 7)&&(multijoueur==1)&&(page==1))
-          {
-            I2.right = 1;
-            p2.direction = 0;
-          }
+          case SDLK_d:
+            if ((v2 != 7) && (multijoueur == 1) && (page == 1))
+            {
+              I2.right = 1;
+              p2.direction = 0;
+            }
 
-          break;
-        case SDLK_q:
-          if ((v2 != 7)&&(multijoueur==1)&&(page==1))
-          {
-            I2.left = 1;
-            p2.direction = 1;
-          }
-          break;
-        case SDLK_z:
-          /*if (p.poshero.y <= 400 && p.poshero.y >= ((ecran->h) / 2) || (b.scroll.y == 0 && p.poshero.y <= 400))
+            break;
+          case SDLK_q:
+            if ((v2 != 7) && (multijoueur == 1) && (page == 1))
+            {
+              I2.left = 1;
+              p2.direction = 1;
+            }
+            break;
+          case SDLK_z:
+            /*if (p.poshero.y <= 400 && p.poshero.y >= ((ecran->h) / 2) || (b.scroll.y == 0 && p.poshero.y <= 400))
           {
             printf("poshero %d", p.poshero.y);
             printf("pos cam %d", b.scroll.y);
@@ -706,22 +783,22 @@ int main(int argc, char *argv[])
 
             if (p.poshero.y <= 30)
               p.poshero.y = 30;*/
-          // }
+            // }
 
-          if ((v2 != 7)&&(multijoueur==1)&&(page==1))
-          {
-            I2.jump = 1;
-            printf("  input jump=%d\n", I.jump);
-          }
-          break;
-        case SDLK_x:
-          if ((v2 != 7)&&(multijoueur==1)&&(page==1))
-          {
-            I2.fight = 1;
-            printf("frapper1\n");
-          }
-          break;
-       /* case SDLK_KP_PLUS:
+            if ((v2 != 7) && (multijoueur == 1) && (page == 1))
+            {
+              I2.jump = 1;
+              printf("  input jump=%d\n", I.jump);
+            }
+            break;
+          case SDLK_x:
+            if ((v2 != 7) && (multijoueur == 1) && (page == 1))
+            {
+              I2.fight = 1;
+              printf("frapper1\n");
+            }
+            break;
+            /* case SDLK_KP_PLUS:
           if (ts < 9999)
             ts++;
           break;
@@ -729,165 +806,171 @@ int main(int argc, char *argv[])
           if (ts < 9999)
             ts--;
           break;*/
-        /*case SDLK_LCTRL:
+            /*case SDLK_LCTRL:
           if (v < 7)
             v++;
           break;*/
-          ///input enigme alea sans fichiers//
-        case SDLK_KP1:
-          if (e1.numrepjuste == 0)
-          {
-            reponsejuste = 1;
-            ts += 50;
-          }
-          else
-          {
-            reponsejuste = 0;
-            ts -= 50;
-            v++;
-          }
-          break;
-
-        case SDLK_KP2:
-          if (e1.numrepjuste == 1)
-          {
-            reponsejuste = 1;
-            ts += 50;
-          }
-
-          else
-          {
-
-            reponsejuste = 0;
-            ts -= 50;
-            v++;
-          }
-
-          break;
-
-        case SDLK_KP3:
-          if (e1.numrepjuste == 2)
-          {
-            reponsejuste = 1;
-            ts += 50;
-          }
-          else
-          {
-            reponsejuste = 0;
-            ts -= 50;
-            v++;
-          }
-          break;
-          //****input enigstat****//
-        case SDLK_a:
-          reponsevraie = -1;
-          ts -= 50;
-          v++;
-
-          break;
-        case SDLK_b:
-          reponsevraie = 1;
-          ts += 50;
-
-          break;
-        case SDLK_c:
-          reponsevraie = -1;
-          ts -= 50;
-          v++;
-
-          break;
-
-        //******input enigme alea avec fichiers**********
-        case SDLK_v:
-          if (enigmealfalf = 1)
-          {
-
-            if (ealf.reponse == 0)
+            ///input enigme alea sans fichiers//
+          case SDLK_KP1:
+            if (e1.numrepjuste == 0)
             {
-              SDL_Delay(2000);
-              r = 0;
-              //ts -= 50;
-              //v++;
+              reponsejuste = 1;
+              ts += 50;
+            }
+            else
+            {
+              reponsejuste = 0;
+              ts -= 50;
+              v++;
+            }
+            break;
+
+          case SDLK_KP2:
+            if (e1.numrepjuste == 1)
+            {
+              reponsejuste = 1;
+              ts += 50;
             }
 
             else
             {
-              SDL_Delay(2000);
+
+              reponsejuste = 0;
+              ts -= 50;
+              v++;
+            }
+
+            break;
+
+          case SDLK_KP3:
+            if (e1.numrepjuste == 2)
+            {
+              reponsejuste = 1;
+              ts += 50;
+            }
+            else
+            {
+              if (reponsejuste = 0)
+              {
+                ts -= 50;
+                v++;
+              }
+            }
+            break;
+            //****input enigstat****//
+          case SDLK_a:
+            if (reponsevraie = -1)
+            {
+              ts -= 50;
+              v++;
+            }
+
+            break;
+          case SDLK_b:
+            if (reponsevraie = 1)
+              ts += 50;
+
+            break;
+          case SDLK_c:
+            if (reponsevraie = -1)
+            {
+              ts -= 50;
+              v++;
+            }
+
+            break;
+
+          //******input enigme alea avec fichiers**********
+          case SDLK_v:
+            if (enigmealfalf = 1)
+            {
+
+              if (ealf.reponse == 0)
+              {
+                SDL_Delay(2000);
+                r = 0;
+                //ts -= 50;
+                //v++;
+              }
+
+              else
+              {
+                SDL_Delay(2000);
+                r = 1;
+                //ts += 50;
+              }
+
+              break;
+            }
+
+          case SDLK_f:
+            if (enigmealfalf = 1)
+            {
+              if (ealf.reponse == 0)
+              {
+                SDL_Delay(2000);
+                r = 1;
+                //ts += 50;
+                //ts -= 50;
+                //v++;
+              }
+
+              else
+              {
+                SDL_Delay(2000);
+                r = 0;
+                //ts += 50;
+              }
+            }
+
+            break;
+          }
+          break;
+        case SDL_MOUSEMOTION:
+          ealf.poscurseur.x = event.motion.x;
+          ealf.poscurseur.y = event.motion.y;
+          /*printf("largeur:%d \n", e.poscurseur.x);
+      printf("hauteur:%d \n", e.poscurseur.y);*/
+          if ((event.motion.x <= 490 && event.motion.x >= 400) && (event.motion.y <= 560 && event.motion.y >= 500))
+          {
+            y = 1;
+          }
+          else if ((event.motion.x < 770 && event.motion.x >= 700) && (event.motion.y < 560 && event.motion.y > 500))
+          {
+            y = 2;
+          }
+        case SDL_MOUSEBUTTONDOWN:
+          switch (event.button.button)
+          {
+          case SDL_BUTTON_LEFT:
+
+            if ((y == 1) && (ealf.reponse == 0))
+            {
+              r = 0;
+              //ts -= 50;
+              //v++;
+            }
+            else if ((y == 1) && (ealf.reponse == 1))
+            {
               r = 1;
+              //ts += 50;
+            }
+            else if ((y == 2) && (ealf.reponse == 0))
+            {
+              r = 1;
+              //ts -= 50;
+              //v++;
+            }
+            else if ((y == 2) && (ealf.reponse == 1))
+            {
+              r = 0;
               //ts += 50;
             }
 
             break;
           }
-
-        case SDLK_f:
-          if (enigmealfalf = 1)
-          {
-            if (ealf.reponse == 0)
-            {
-              SDL_Delay(2000);
-              r = 1;
-              //ts += 50;
-              //ts -= 50;
-              //v++;
-            }
-
-            else
-            {
-              SDL_Delay(2000);
-              r = 0;
-              //ts += 50;
-            }
-          }
-
-          break;
-        }
-        break;
-      case SDL_MOUSEMOTION:
-        ealf.poscurseur.x = event.motion.x;
-        ealf.poscurseur.y = event.motion.y;
-        /*printf("largeur:%d \n", e.poscurseur.x);
-      printf("hauteur:%d \n", e.poscurseur.y);*/
-        if ((event.motion.x <= 490 && event.motion.x >= 400) && (event.motion.y <= 560 && event.motion.y >= 500))
-        {
-          y = 1;
-        }
-        else if ((event.motion.x < 770 && event.motion.x >= 700) && (event.motion.y < 560 && event.motion.y > 500))
-        {
-          y = 2;
-        }
-      case SDL_MOUSEBUTTONDOWN:
-        switch (event.button.button)
-        {
-        case SDL_BUTTON_LEFT:
-
-          if ((y == 1) && (ealf.reponse == 0))
-          {
-            r = 0;
-            //ts -= 50;
-            //v++;
-          }
-          else if ((y == 1) && (ealf.reponse == 1))
-          {
-            r = 1;
-            //ts += 50;
-          }
-          else if ((y == 2) && (ealf.reponse == 0))
-          {
-            r = 1;
-            //ts -= 50;
-            //v++;
-          }
-          else if ((y == 2) && (ealf.reponse == 1))
-          {
-            r = 0;
-            //ts += 50;
-          }
-
-          break;
         }
       }
-    }
     }
     /****Module update *******/
 
@@ -933,7 +1016,7 @@ int main(int argc, char *argv[])
               p.direction = 0;
               if (m.pospoint.x <= m.posminimap.x + 1240)
                 m.pospoint.x += p.poshero.x / 172;
-              
+
               scrollingBack(&b, p, I);
             }
 
@@ -989,7 +1072,7 @@ int main(int argc, char *argv[])
       }
 
       else if (multijoueur == 1)
-      {           
+      {
 
         if ((I1.right == 1) && (v1 != 7) && (test1 == 0) && (enigmeelf == 0) && (teststat == 0)) // fleche right
         {
@@ -1013,8 +1096,7 @@ int main(int argc, char *argv[])
               // condition de collision avec enegime1
               // condition de collision avec enegime2
               // condition de collision avec enegime3
-            }          
-
+            }
 
             //  if( collision bouding box)// collision avec enemie
           }
@@ -1030,7 +1112,7 @@ int main(int argc, char *argv[])
               p1.direction = 0;
               if (m.pospoint.x <= m.posminimap.x + 1240)
                 m.pospoint.x += p1.poshero.x / 172;
-             
+
               scrollingBack(&b1, p1, I1);
             }
 
@@ -1124,7 +1206,7 @@ int main(int argc, char *argv[])
               p2.direction = 0;
               if (m.pospoint.x <= m.posminimap.x + 1240)
                 m.pospoint.x += p2.poshero.x / 172;
-              
+
               scrollingBack(&b2, p2, I2);
             }
 
@@ -1142,7 +1224,7 @@ int main(int argc, char *argv[])
         {
           if ((b2.scroll.x >= 50 && b2.scroll.x < (b2.scroll.w - ecran->w)) || (b2.scroll.x == (b2.scroll.w - ecran->w) && p2.poshero.x <= 760))
           {
-            
+
             if (collisionPP(p2, b2.imageM, b2, I2) == 0)
             {
               if (m.pospoint.x <= m.posminimap.x + 1240)
@@ -1179,89 +1261,96 @@ int main(int argc, char *argv[])
         }
       }
     }
-   if (multijoueur == 0)
+    if (multijoueur == 0)
     {
       if ((collisionPP(p, b.imageM, b, I) == 0))
       {
-       p.gravity = 400;
+        p.gravity = 400;
         p.jumpspeed = 35;
-        jumpin(&p, &I,&b,multijoueur);
-        gravity(&p, &I,&b,multijoueur);
+        jumpin(&p, &I, &b, multijoueur);
+        gravity(&p, &I, &b, multijoueur);
       }
       else
       {
         p.gravity = 100;
         p.jumpspeed = 1;
-        jumpin(&p, &I,&b,multijoueur);
-        gravity(&p, &I,&b,multijoueur);
+        jumpin(&p, &I, &b, multijoueur);
+        gravity(&p, &I, &b, multijoueur);
       }
       if ((p.direction == 0) && (collisionPP1(p, b.imageM, b, I) == 1))
       {
-       
+
         v++;
         p.poshero.x -= 100;
         ts -= 10;
       }
       else if ((p.direction == 1) && (collisionPP1(p, b.imageM, b, I) == 1))
       {
-       
+
         v++;
         p.poshero.x += 100;
         ts -= 10;
       }
     }
-    
-     if (multijoueur == 1)
+
+    if (multijoueur == 1)
     {
       if ((collisionPP(p1, b1.imageM, b1, I1) == 0))
       {
         p1.gravity = 230;
         p1.jumpspeed = 15;
-        jumpin(&p1, &I1,&b1,multijoueur);
-        gravity(&p1, &I1,&b1,multijoueur);
+        jumpin(&p1, &I1, &b1, multijoueur);
+        gravity(&p1, &I1, &b1, multijoueur);
       }
-      
+      else
+      {
+        p1.gravity = 100;
+        p1.jumpspeed = 1;
+        jumpin(&p1, &I1, &b1, multijoueur);
+        gravity(&p1, &I1, &b1, multijoueur);
+      }
+
       if ((p1.direction == 0) && (collisionPP1(p1, b1.imageM, b1, I1) == 1))
       {
-       
+
         v1++;
         p1.poshero.x -= 100;
-        //ts -= 10;
+        ts1 -= 10;
       }
       else if ((p1.direction == 1) && (collisionPP1(p1, b1.imageM, b1, I1) == 1))
       {
-       
+
         v1++;
         p1.poshero.x += 100;
-        //ts -= 10;
+        ts1 -= 10;
       }
       if ((collisionPP(p2, b2.imageM, b2, I2) == 0))
       {
         p2.gravity = 630;
         p2.jumpspeed = 15;
-        jumpin(&p2, &I2,&b2,multijoueur);
-        gravity(&p2, &I2,&b2,multijoueur);
+        jumpin(&p2, &I2, &b2, multijoueur);
+        gravity(&p2, &I2, &b2, multijoueur);
       }
       else
       {
         p2.gravity = 100;
         p2.jumpspeed = 1;
-        jumpin(&p2, &I2,&b2,multijoueur);
-        gravity(&p2, &I2,&b2,multijoueur);
+        jumpin(&p2, &I2, &b2, multijoueur);
+        gravity(&p2, &I2, &b2, multijoueur);
       }
       if ((p2.direction == 0) && (collisionPP1(p2, b2.imageM, b2, I2) == 1))
       {
-       
+
         v2++;
         p2.poshero.x -= 100;
-        //ts -= 10;
+        ts2 -= 10;
       }
       else if ((p2.direction == 1) && (collisionPP1(p2, b2.imageM, b2, I2) == 1))
       {
-        
+
         v2++;
         p2.poshero.x += 100;
-        //ts -= 10;
+        ts2 -= 10;
       }
     }
     animerperso(&p, ecran, v, &I);
